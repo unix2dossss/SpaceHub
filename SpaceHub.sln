@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceHub.Server", "SpaceHub.Server\SpaceHub.Server.csproj", "{5B48EA7E-C117-475A-B6C2-5B62ED118DC0}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "spacehub.client", "spacehub.client\spacehub.client.esproj", "{CA04BDFB-4669-44DB-B75B-FB0CF0BDB00C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B48EA7E-C117-475A-B6C2-5B62ED118DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B48EA7E-C117-475A-B6C2-5B62ED118DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B48EA7E-C117-475A-B6C2-5B62ED118DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B48EA7E-C117-475A-B6C2-5B62ED118DC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA04BDFB-4669-44DB-B75B-FB0CF0BDB00C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA04BDFB-4669-44DB-B75B-FB0CF0BDB00C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA04BDFB-4669-44DB-B75B-FB0CF0BDB00C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CA04BDFB-4669-44DB-B75B-FB0CF0BDB00C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA04BDFB-4669-44DB-B75B-FB0CF0BDB00C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA04BDFB-4669-44DB-B75B-FB0CF0BDB00C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6587A650-6F4A-412E-9EC3-6F550C085920}
+	EndGlobalSection
+EndGlobal
