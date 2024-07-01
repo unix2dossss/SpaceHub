@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceHub.Server", "SpaceHub.Server\SpaceHub.Server.csproj", "{5B48EA7E-C117-475A-B6C2-5B62ED118DC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceHub.Server", "SpaceHub.Server\SpaceHub.Server.csproj", "{5B48EA7E-C117-475A-B6C2-5B62ED118DC0}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "spacehub.client", "spacehub.client\spacehub.client.esproj", "{CA04BDFB-4669-44DB-B75B-FB0CF0BDB00C}"
 EndProject
