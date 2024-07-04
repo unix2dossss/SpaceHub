@@ -1,8 +1,10 @@
+.body {
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+}
+
 .inner {
     display: flex;
     justify-content: space-between;
-    padding-top: calc(var(--mantine-spacing-xl) * 4);
-    padding-bottom: calc(var(--mantine-spacing-xl) * 4);
 }
 
 .content {

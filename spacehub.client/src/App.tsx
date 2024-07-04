@@ -1,22 +1,24 @@
 import './App.css';
-import { createTheme, MantineProvider, Button } from '@mantine/core';
-import HeroBullets from './Components/HeroBullets';
-import ActionToggle from './Components/ActionToggle';
+import { MantineProvider } from '@mantine/core';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes instead of Switch
+import Home from './Components/Homepage/Home';
+import NotFoundImage from './Components/NotFound/NotFoundImage';
+import FaqWithImage from './Components/FAQ/FaqWithImage';
+import HeaderSimple from './Components/Header/HeaderSimple'; // Updated import for HeaderSimple
 
-const theme = createTheme({
-    /** Put your mantine theme override here */
-    primaryColor: 'red'
-});
-
-function App(){
+function App() {
     return (
-        <div>
-            <MantineProvider theme={theme}>
-                <HeroBullets></HeroBullets>
-                <ActionToggle></ActionToggle>
-                <Button></Button>
-            </MantineProvider>
-        </div>
+        <MantineProvider>
+            <Router>
+                <HeaderSimple /> {/* Render HeaderSimple outside of Routes */}
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/faq" element={<FaqWithImage />} />
+                    {/* Add more routes */}
+                    <Route path="*" element={<NotFoundImage />} />
+                </Routes>
+            </Router>
+        </MantineProvider>
     );
 }
 

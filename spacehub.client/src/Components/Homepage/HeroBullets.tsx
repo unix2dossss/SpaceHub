@@ -1,6 +1,7 @@
 import { Image, Container, Title, Button, Group, Text, List, ThemeIcon, rem } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
-import moon_image from '../assets/moon_illustration.svg';
+import moon_image from '../../assets/moon_illustration.svg';
+import hero2 from '../../assets/hero2.svg';
 import classes from './HeroBullets.module.css';
 
 function HeroBullets() {
@@ -9,11 +10,11 @@ function HeroBullets() {
             <div className={classes.inner}>
                 <div className={classes.content}>
                     <Title className={classes.title}>
-                        A <span className={classes.highlight}>modern</span> React <br /> components library
-                    </Title>
-                    <Text c="dimmed" mt="md">
-                        Build fully functional accessible web applications faster than ever - Mantine includes
-                        more than 120 customizable components and hooks to cover you in any situation
+                        <span className={classes.highlight}>Space</span> Hub<br />
+                    </Title><br />
+                    <Text>
+                        Our club is the starting point for new university students who are interested in space but don't know where
+                        to begin. It's a hard industry to break into, and we're a club made up of people sharing that journey together.
                     </Text>
 
                     <List
@@ -27,29 +28,26 @@ function HeroBullets() {
                         }
                     >
                         <List.Item>
-                            <b>TypeScript based</b> - build type safe applications, all components and hooks
-                            export types
+                            <b>Engage and connect</b> - It's a community club where you can geek out about space and connect with people to learn more about their experiences.
                         </List.Item>
                         <List.Item>
-                            <b>Free and open source</b> - all packages have MIT license, you can use Mantine in
-                            any project
+                            <b>Guest speakers and events</b> - We often host guest speakers, ranging from industry professionals to astronauts, and organize events from astrobiology talks to stargazing trips.
                         </List.Item>
                         <List.Item>
-                            <b>No annoying focus ring</b> - focus ring will appear only when user navigates with
-                            keyboard
+                            <b>Relax and enjoy</b> - If you just want to chill, watch space movies, go camping, and stargaze, we do that too!
                         </List.Item>
                     </List>
 
                     <Group mt={30}>
                         <Button radius="xl" size="md" className={classes.control}>
-                            Get started
+                            Join Us
                         </Button>
                         <Button variant="default" radius="xl" size="md" className={classes.control}>
                             Source code
                         </Button>
                     </Group>
                 </div>
-                <Image src={moon_image} className={classes.image} />
+                <Image src={hero2} className={classes.image} />
             </div>
         </Container>
     );
