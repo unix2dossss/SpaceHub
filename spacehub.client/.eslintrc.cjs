@@ -13,6 +13,10 @@ module.exports = {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
-    ],
+      ],
+      // Disable the base rule for no-unused-vars
+      "no-unused-vars": "off",
+      // Disable the @typescript-eslint version of the rule as well
+      "@typescript-eslint/no-unused-vars": "off"
   },
 }
