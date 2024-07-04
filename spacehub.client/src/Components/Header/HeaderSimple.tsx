@@ -11,6 +11,7 @@ const links = [
     { link: '/faq', label: 'FAQ' },
     { link: '/events', label: 'Events' },
     { link: '/membership', label: 'Membership' },
+    { link: '/launches', label: 'Launches' },
 ];
 
 function HeaderSimple() {

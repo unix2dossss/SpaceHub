@@ -3,7 +3,7 @@ import { useHeadroom } from '@mantine/hooks';
 import HeaderSimple from './Header/HeaderSimple';
 
 
-function Headroom() {
+function Layout() {
     const pinned = useHeadroom({ fixedAt: 120 });
 
     return (
@@ -13,4 +13,4 @@ function Headroom() {
     );
 }
 
-export default Headroom;
+export default Layout;
