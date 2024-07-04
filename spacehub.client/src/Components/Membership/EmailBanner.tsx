@@ -1,5 +1,5 @@
 import { Text, Title, TextInput, Button, Image } from '@mantine/core';
-import image from './image.svg';
+import membership from '../../assets/membership.svg';
 import classes from './EmailBanner.module.css';
 
 function EmailBanner() {
@@ -23,7 +23,7 @@ function EmailBanner() {
                     <Button className={classes.control}>Subscribe</Button>
                 </div>
             </div>
-            <Image src={image.src} className={classes.image} />
+            <Image src={membership} className={classes.image} />
         </div>
     );
 }
