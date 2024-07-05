@@ -1,5 +1,5 @@
 import './App.css';
-import { useMantineColorScheme, MantineProvider, createTheme } from '@mantine/core';
+import { MantineProvider, createTheme } from '@mantine/core';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes instead of Switch
 import Home from './Components/Homepage/Home';
 import NotFoundImage from './Components/NotFound/NotFoundImage';
@@ -7,6 +7,8 @@ import FaqWithImage from './Components/FAQ/FaqWithImage';
 import HeaderSimple from './Components/Header/HeaderSimple'; // Updated import for HeaderSimple
 import About from './Components/AboutUs/About';
 import Membership from './Components/Membership/Membership';
+import Events from './Components/Events/Events';
+import Layout from './Components/Layout';
 
 const theme = createTheme({
     fontFamily: 'Greycliff CF, sans-serif',
@@ -17,20 +19,20 @@ const theme = createTheme({
 });
 
 function App() {
-    const { setColorScheme, clearColorScheme } = useMantineColorScheme();
-    setColorScheme('light')
     return (
-        <MantineProvider>
+        <MantineProvider forceColorScheme='dark'>
             <Router>
-                <HeaderSimple /> {/* Render HeaderSimple outside of Routes */}
+                {/*<HeaderSimple />  Render HeaderSimple outside of Routes */}
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/faq" element={<FaqWithImage />} />
-                    <Route path="/membership" element={<Membership />} />
-                    <Route path="*" element={<NotFoundImage />} />
+                    <Route path="/" element={<Layout> <Home/> </Layout>} />
+                    <Route path="/about" element={<Layout> <About /> </Layout>} />
+                    <Route path="/faq" element={<Layout> <FaqWithImage /> </Layout>} />
+                    <Route path="/events" element={<Layout> <Events /> </Layout>} />
+                    <Route path="/membership" element={<Layout> <Membership /> </Layout>} />
+                    <Route path="*" element={<Layout> <NotFoundImage /> </Layout>} />
                 </Routes>
             </Router>
+            
         </MantineProvider>
     );
 }

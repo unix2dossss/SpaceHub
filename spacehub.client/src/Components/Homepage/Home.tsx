@@ -3,8 +3,6 @@ import HeroBullets from './HeroBullets';
 import HeaderSimple from '../Header/HeaderSimple';
 
 
-
-
 const Home = () => {
     return (
         <div>
