@@ -1,15 +1,34 @@
-import { AppShell, Burger, Group, Stack, UnstyledButton, rem } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantinex/mantine-logo';
+import {
+    AppShell, Burger, Group, Stack, UnstyledButton, rem
+}
+
+from '@mantine/core';
+import {
+    useDisclosure
+}
+
+from '@mantine/hooks';
+import {
+    MantineLogo
+}
+
+from '@mantinex/mantine-logo';
 import classes from './Layout.module.css';
-import { Link } from 'react-router-dom';
-import { IconCopyright } from '@tabler/icons-react';
+import {
+    Link
+}
+
+from 'react-router-dom';
+import {
+    IconCopyright
+}
+
+from '@tabler/icons-react';
 
 
 
 function Layout({ children }) {
     const [opened, { toggle }] = useDisclosure();
-
     return (
         <AppShell
             header={{ height: 60 }}

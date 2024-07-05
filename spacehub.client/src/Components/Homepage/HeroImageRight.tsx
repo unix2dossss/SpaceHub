@@ -1,7 +1,7 @@
 import { Container, Title, Text, Button } from '@mantine/core';
 import classes from './HeroImageRight.module.css';
 
-export function HeroImageRight() {
+function HeroImageRight() {
     return (
         <div className={classes.root}>
             <Container size="lg">
@@ -21,8 +21,8 @@ export function HeroImageRight() {
                         </Title>
 
                         <Text className={classes.description} mt={30}>
-                            Build fully functional accessible web applications with ease – Mantine includes more
-                            than 100 customizable components and hooks to cover you in any situation
+                            Our club is the starting point for new university students who are interested in space but don't know where
+                            to begin. It's a hard industry to break into, and we're a club made up of people sharing that journey together.
                         </Text>
 
                         <Button
@@ -40,3 +40,5 @@ export function HeroImageRight() {
         </div>
     );
 }
+
+export default HeroImageRight;

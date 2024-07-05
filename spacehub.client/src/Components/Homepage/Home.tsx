@@ -1,14 +1,12 @@
-import HeroBullets from './HeroBullets';
-/*import { HeroImageRight } from './HeroImageRight';*/
-import HeaderSimple from '../Header/HeaderSimple';
+//import HeroBullets from './HeroBullets';
+import HeroImageRight from './HeroImageRight';
 
 
 const Home = () => {
     return (
         <div>
-            {/*<HeaderSimple></HeaderSimple>*/}
-            <HeroBullets></HeroBullets>
-            {/*<HeroImageRight></HeroImageRight>*/}
+            {/*<HeroBullets></HeroBullets>*/}
+            <HeroImageRight></HeroImageRight>
         </div>
     );
 }
