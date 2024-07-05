@@ -1,14 +1,68 @@
-import { AppShell } from '@mantine/core';
-import { useHeadroom } from '@mantine/hooks';
-import HeaderSimple from './Header/HeaderSimple';
+import { AppShell, Burger, Group, Stack, UnstyledButton } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { MantineLogo } from '@mantinex/mantine-logo';
+import classes from './Layout.module.css';
+import { Link } from 'react-router-dom';
 
 
-function Layout() {
-    const pinned = useHeadroom({ fixedAt: 120 });
+function Layout({ children }) {
+    const [opened, { toggle }] = useDisclosure();
 
     return (
-        <AppShell header={{ height: 0,  collapsed: !pinned, offset: false }} padding="md">
-            <HeaderSimple></HeaderSimple>
+        <AppShell
+            header={{ height: 60 }}
+            navbar={{ width: 300, breakpoint: 'sm', collapsed: { desktop: true, mobile: !opened } }}
+            padding="md"
+        >
+            <AppShell.Header>
+                <Group h="100%" px="md">
+                    <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+                    <Group justify="space-between" style={{ flex: 1 }}>
+                        <MantineLogo size={30} />
+                        <Group ml="xl" gap={30} visibleFrom="sm">
+                            <Link to="/about" className={classes.link}>
+                                <UnstyledButton className={classes.link}>About Us</UnstyledButton>
+                            </Link>
+                            <Link to="/events" className={classes.link}>
+                                <UnstyledButton className={classes.link}>Events</UnstyledButton>
+                            </Link>
+                            <Link to="/faq" className={classes.link}>
+                                <UnstyledButton className={classes.link}>FAQ</UnstyledButton>
+                            </Link>
+                            <Link to="/membership" className={classes.link}>
+                                <UnstyledButton className={classes.link}>Join Us</UnstyledButton>
+                            </Link>
+                            {/*<Link to="/launches" className={classes.link}*/}
+                            {/*    <UnstyledButton className={classes.link}>Launches</UnstyledButton>*/}
+                            {/*</Link>*/}
+                        </Group>
+                    </Group>
+                </Group>
+            </AppShell.Header>
+
+            <AppShell.Navbar py="xl" px={40}>
+                <Stack gap="md">
+                    <Link to="/about" className={classes.link}>
+                        <UnstyledButton className={classes.link}>About Us</UnstyledButton>
+                    </Link>
+                    <Link to="/events" className={classes.link}>
+                        <UnstyledButton className={classes.link}>Events</UnstyledButton>
+                    </Link>
+                    <Link to="/faq" className={classes.link}>
+                        <UnstyledButton className={classes.link}>FAQ</UnstyledButton>
+                    </Link>
+                    <Link to="/membership" className={classes.link}>
+                        <UnstyledButton className={classes.link}>Join Us</UnstyledButton>
+                    </Link>
+                    {/*<Link to="/launches" className={classes.link}*/}
+                    {/*    <UnstyledButton className={classes.link}>Launches</UnstyledButton>*/}
+                    {/*</Link>*/}
+                </Stack>  
+            </AppShell.Navbar>
+
+            <AppShell.Main>
+                {children}
+            </AppShell.Main>
         </AppShell>
     );
 }

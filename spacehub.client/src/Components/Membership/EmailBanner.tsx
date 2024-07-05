@@ -11,8 +11,7 @@ function EmailBanner() {
                     Subscribe to our newsletter!
                 </Text>
                 <Text fz="sm" c="dimmed">
-                    You will never miss important product updates, latest news and community QA sessions. Our
-                    newsletter is once a week, every Sunday.
+                    Embark on an interstellar adventure with SpaceHub! Receive weekly updates every Sunday on groundbreaking space news, celestial events, and exclusive community insights. Stay connected to the cosmos!
                 </Text>
 
                 <div className={classes.controls}>
