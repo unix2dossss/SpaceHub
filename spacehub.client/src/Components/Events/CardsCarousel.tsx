@@ -1,8 +1,8 @@
+import '@mantine/carousel/styles.css';
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { Paper, Text, Title, Button, useMantineTheme, rem } from '@mantine/core';
 import classes from './CardsCarousel.module.css';
-import '@mantine/carousel/styles.css';
 
 interface CardProps {
     image: string;
@@ -73,7 +73,7 @@ const data = [
     },
 ];
 
-export function CardsCarousel() {
+function CardsCarousel() {
     const theme = useMantineTheme();
     const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
     const slides = data.map((item) => (
@@ -83,13 +83,20 @@ export function CardsCarousel() {
     ));
 
     return (
-        <Carousel
-            slideSize={{ base: '100%', sm: '50%' }}
-            slideGap={{ base: rem(2), sm: 'xl' }}
-            align="start"
-            slidesToScroll={mobile ? 1 : 2}
-        >
-            {slides}
-        </Carousel>
+        <div className="carousel-container">
+            <Carousel slideSize={{ base: '100%', sm: '50%', md: '33.333333%' }} align="start" slideGap="xl" controlsOffset="md" controlSize={10} dragFree>
+                {slides}
+            </Carousel>
+        </div>
+        //<Carousel
+        //    slideSize={{ base: '100%', sm: '50%' }}
+        //    slideGap={{ base: rem(2), sm: 'xl' }}
+        //    align="start"
+        //    slidesToScroll={mobile ? 1 : 2}
+        //>
+        //    {slides}
+        //</Carousel>
     );
 }
+
+export default CardsCarousel;

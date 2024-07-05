@@ -9,6 +9,8 @@ import About from './Components/AboutUs/About';
 import Membership from './Components/Membership/Membership';
 import Events from './Components/Events/Events';
 import Layout from './Components/Layout';
+import { AdminLayout } from './Components/AdminLayout';
+import CardsCarousel from './Components/Events/CardsCarousel';
 
 const theme = createTheme({
     fontFamily: 'Greycliff CF, sans-serif',
@@ -29,6 +31,9 @@ function App() {
                     <Route path="/faq" element={<Layout> <FaqWithImage /> </Layout>} />
                     <Route path="/events" element={<Layout> <Events /> </Layout>} />
                     <Route path="/membership" element={<Layout> <Membership /> </Layout>} />
+                    <Route path="/admin" element={<AdminLayout> <CardsCarousel /> </AdminLayout>} />
+                    <Route path="/admin/events" element={<AdminLayout> <Membership /> </AdminLayout>} />
+                    <Route path="/admin/membership" element={<AdminLayout> <Membership /> </AdminLayout>} />
                     <Route path="*" element={<Layout> <NotFoundImage /> </Layout>} />
                 </Routes>
             </Router>
