@@ -1,6 +1,6 @@
 import './App.css';
 import { MantineProvider, createTheme } from '@mantine/core';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes instead of Switch
+import { BrowserRouter as Router, Route, Routes, RouterProvider, createBrowserRouter } from 'react-router-dom'; // Import Routes instead of Switch
 import Home from './Components/Homepage/Home';
 import NotFoundImage from './Components/NotFound/NotFoundImage';
 import FaqWithImage from './Components/FAQ/FaqWithImage';
@@ -21,23 +21,77 @@ const theme = createTheme({
     },
 });
 
+const router = createBrowserRouter([
+    {
+        path: "/admin",
+        element: <Login />,
+    },
+    {
+        path: "/admin/portal",
+        element: <AdminLayout />,
+        children: [
+            {
+                path: "/admin/portal",
+                element: <Home />, // Admin home page
+            },
+            {
+                path: "/admin/portal/events",
+                element: <Events />,
+            },
+            {
+                path: "/admin/portal/members",
+                element: <Membership />,
+            },
+        ],
+    },
+    {
+        path: "/",
+        element: <Layout />,
+        children: [
+            {
+                path: "",
+                element: <Home />,
+            },
+            {
+                path: "about",
+                element: <About />,
+            },
+            {
+                path: "faq",
+                element: <FaqWithImage />,
+            },
+            {
+                path: "events",
+                element: <Events />,
+            },
+            {
+                path: "membership",
+                element: <Membership />,
+            },
+        ],
+    },
+]);
+
+
+
 function App() {
     return (
         <MantineProvider forceColorScheme='dark'>
-            <Router>
-                {/*<HeaderSimple />  Render HeaderSimple outside of Routes */}
-                <Routes>
-                    <Route path="/" element={<Layout> <Home/> </Layout>} />
-                    <Route path="/about" element={<Layout> <About /> </Layout>} />
-                    <Route path="/faq" element={<Layout> <FaqWithImage /> </Layout>} />
-                    <Route path="/events" element={<Layout> <Events /> </Layout>} />
-                    <Route path="/membership" element={<Layout> <Membership /> </Layout>} />
-                    <Route path="/admin" element={<Login />} />
-                    <Route path="/admin/events" element={<AdminLayout> <Membership /> </AdminLayout>} />
-                    <Route path="/admin/membership" element={<AdminLayout> <Membership /> </AdminLayout>} />
-                    <Route path="*" element={<Layout> <NotFoundImage /> </Layout>} />
-                </Routes>
-            </Router>
+            {/*<Router>*/}
+            {/*    */}{/*<HeaderSimple />  Render HeaderSimple outside of Routes */}
+            {/*    <Routes>*/}
+            {/*        <Route path="/" element={<Layout> <Home/> </Layout>} />*/}
+            {/*        <Route path="/about" element={<Layout> <About /> </Layout>} />*/}
+            {/*        <Route path="/faq" element={<Layout> <FaqWithImage /> </Layout>} />*/}
+            {/*        <Route path="/events" element={<Layout> <Events /> </Layout>} />*/}
+            {/*        <Route path="/membership" element={<Layout> <Membership /> </Layout>} />*/}
+            {/*        <Route path="/admin" element={<Login />} />*/}
+            {/*        <Route path="/admin/events" element={<AdminLayout> <Membership /> </AdminLayout>} />*/}
+            {/*        <Route path="/admin/membership" element={<AdminLayout> <Membership /> </AdminLayout>} />*/}
+            {/*        <Route path="*" element={<Layout> <NotFoundImage /> </Layout>} />*/}
+            {/*    </Routes>*/}
+            {/*</Router>*/}
+            <RouterProvider router={router} />
             
         </MantineProvider>
     );

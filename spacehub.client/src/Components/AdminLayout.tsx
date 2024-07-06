@@ -3,8 +3,9 @@ import { useDisclosure } from '@mantine/hooks';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import { Link } from 'react-router-dom';
 import classes from './Layout.module.css';
+import { Outlet } from "react-router-dom";
 
-export function AdminLayout({ children }) {
+export function AdminLayout() {
     const [opened, { toggle }] = useDisclosure();
 
     return (
@@ -25,18 +26,15 @@ export function AdminLayout({ children }) {
             </AppShell.Header>
             <AppShell.Navbar py="xl" px={40}>
                 <Stack gap="md">
-                    <Link to="/admin/events" className={classes.link}>
+                    <Link to="/admin/portal/events" className={classes.link}>
                         <UnstyledButton className={classes.link}>Manage Events</UnstyledButton>
                     </Link>
-                    <Link to="/admin/membership" className={classes.link}>
+                    <Link to="/admin/portal/members" className={classes.link}>
                         <UnstyledButton className={classes.link}>Manage Members</UnstyledButton>
                     </Link>
-                    {/*<Link to="/launches" className={classes.link}*/}
-                    {/*    <UnstyledButton className={classes.link}>Launches</UnstyledButton>*/}
-                    {/*</Link>*/}
                 </Stack>
             </AppShell.Navbar>
-            <AppShell.Main>{ children }</AppShell.Main>
+            <AppShell.Main><Outlet /></AppShell.Main>
         </AppShell>
     );
 }
