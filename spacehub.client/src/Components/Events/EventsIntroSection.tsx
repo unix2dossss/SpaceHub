@@ -59,7 +59,7 @@ function EventsIntroSection() {
                     <Title className={classes.title} order={2}>
                         A fully featured React components library for your next project
                     </Title>
-                    <Text c="dimmed">
+                    <Text mt="md" c="dimmed">
                         Discover the universe with SpaceHub, your gateway to all things space-related. Join us for exciting events and activities that celebrate the cosmos and inspire curiosity about our universe.
                     </Text>
 

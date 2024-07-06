@@ -1,6 +1,10 @@
 .wrapper {
     padding-top: calc(var(--mantine-spacing-xl) * 2);
     padding-bottom: calc(var(--mantine-spacing-xl) * 2);
+    display: flex;
+    align-items: center;
+    /* justify-content: center;*/
+    min-height: calc(100vh - 140px);
 }
 
 .title {

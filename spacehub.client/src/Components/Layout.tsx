@@ -4,10 +4,12 @@ import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './Layout.module.css';
 import { Link } from 'react-router-dom';
 import { IconCopyright } from '@tabler/icons-react';
+import { Outlet } from "react-router-dom";
 
 
 
-function Layout({ children }) {
+
+function Layout() {
     const [opened, { toggle }] = useDisclosure();
 
     return (
@@ -64,7 +66,7 @@ function Layout({ children }) {
             </AppShell.Navbar>
 
             <AppShell.Main>
-                {children}
+                <Outlet/>
             </AppShell.Main>
 
             <AppShell.Footer p="md"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
