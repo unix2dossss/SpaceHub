@@ -77,22 +77,7 @@ const router = createBrowserRouter([
 function App() {
     return (
         <MantineProvider forceColorScheme='dark'>
-            {/*<Router>*/}
-            {/*    */}{/*<HeaderSimple />  Render HeaderSimple outside of Routes */}
-            {/*    <Routes>*/}
-            {/*        <Route path="/" element={<Layout> <Home/> </Layout>} />*/}
-            {/*        <Route path="/about" element={<Layout> <About /> </Layout>} />*/}
-            {/*        <Route path="/faq" element={<Layout> <FaqWithImage /> </Layout>} />*/}
-            {/*        <Route path="/events" element={<Layout> <Events /> </Layout>} />*/}
-            {/*        <Route path="/membership" element={<Layout> <Membership /> </Layout>} />*/}
-            {/*        <Route path="/admin" element={<Login />} />*/}
-            {/*        <Route path="/admin/events" element={<AdminLayout> <Membership /> </AdminLayout>} />*/}
-            {/*        <Route path="/admin/membership" element={<AdminLayout> <Membership /> </AdminLayout>} />*/}
-            {/*        <Route path="*" element={<Layout> <NotFoundImage /> </Layout>} />*/}
-            {/*    </Routes>*/}
-            {/*</Router>*/}
             <RouterProvider router={router} />
-            
         </MantineProvider>
     );
 }
