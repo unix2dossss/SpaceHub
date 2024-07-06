@@ -9,13 +9,15 @@ import {
     Container,
     Group,
     Button,
+    Center,
 } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import classes from './Login.module.css';
 
 function Login() {
     return (
-        <div className={classes.login_container}>
+        // Can add bg here.
+        <Center w="100vw" h="100vh">
             <Container size={420} my={40}>
                 <Title ta="center" className={classes.title}>
                     Executive Portal
@@ -43,7 +45,7 @@ function Login() {
                     </Button>
                 </Paper>
             </Container>
-        </div>
+        </Center>
     );
 }
 
