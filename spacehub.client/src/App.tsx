@@ -4,14 +4,13 @@ import { BrowserRouter as Router, Route, Routes, RouterProvider, createBrowserRo
 import Home from './Components/Homepage/Home';
 import NotFoundImage from './Components/NotFound/NotFoundImage';
 import FaqWithImage from './Components/FAQ/FaqWithImage';
-import HeaderSimple from './Components/Header/HeaderSimple'; // Updated import for HeaderSimple
 import About from './Components/AboutUs/About';
 import Membership from './Components/Membership/Membership';
 import Events from './Components/Events/Events';
 import Layout from './Components/Layout';
-import { AdminLayout } from './Components/AdminLayout';
-import CardsCarousel from './Components/Events/CardsCarousel';
+import { AdminLayout } from './Components/Admin/AdminLayout';
 import Login from './Components/Admin/Login';
+
 
 const theme = createTheme({
     fontFamily: 'Greycliff CF, sans-serif',
@@ -21,28 +20,74 @@ const theme = createTheme({
     },
 });
 
+//const router = createBrowserRouter([
+//    {
+//        path: "*",
+//        element: <NotFoundImage />,
+//    },
+//    {
+//        path: "/admin",
+//        element: <Login />,
+//    },
+//    {
+//        path: "/admin/portal",
+//        element: <AdminLayout />,
+//        children: [
+//            {
+//                path: "/admin/portal",
+//                element: <Home />, // Admin home page
+//            },
+//            {
+//                path: "/admin/portal/events",
+//                element: <Events />,
+//            },
+//            {
+//                path: "/admin/portal/members",
+//                element: <Membership />,
+//            },
+//        ],
+//    },
+//    {
+//        path: "/",
+//        element: <Layout />,
+//        children: [
+//            {
+//                path: "",
+//                element: <Home />,
+//            },
+//            {
+//                path: "about",
+//                element: <About />,
+//            },
+//            {
+//                path: "faq",
+//                element: <FaqWithImage />,
+//            },
+//            {
+//                path: "events",
+//                element: <Events />,
+//            },
+//            {
+//                path: "membership",
+//                element: <Membership />,
+//            },
+//        ],
+//    },
+//]);
+
+
 const router = createBrowserRouter([
+    {
+        path: "*",
+        element: <NotFoundImage />,
+    },
     {
         path: "/admin",
         element: <Login />,
     },
     {
         path: "/admin/portal",
-        element: <AdminLayout />,
-        children: [
-            {
-                path: "/admin/portal",
-                element: <Home />, // Admin home page
-            },
-            {
-                path: "/admin/portal/events",
-                element: <Events />,
-            },
-            {
-                path: "/admin/portal/members",
-                element: <Membership />,
-            },
-        ],
+        element: <AdminLayout><Home></Home></AdminLayout>,
     },
     {
         path: "/",
@@ -71,7 +116,6 @@ const router = createBrowserRouter([
         ],
     },
 ]);
-
 
 
 function App() {
