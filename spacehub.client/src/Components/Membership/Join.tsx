@@ -69,7 +69,7 @@ function Join() {
                         {...form.getInputProps('password')}
                     />
                 </Stepper.Step>
-
+                fsfs
                 <Stepper.Step label="Second step" description="Personal information">
                     <TextInput
                         label="Name"
