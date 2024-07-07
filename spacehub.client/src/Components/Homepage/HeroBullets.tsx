@@ -1,6 +1,5 @@
 import { Image, Container, Title, Button, Group, Text, List, ThemeIcon, rem } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
-import moon_image from '../../assets/moon_illustration.svg';
 import hero2 from '../../assets/hero2.svg';
 import classes from './HeroBullets.module.css';
 

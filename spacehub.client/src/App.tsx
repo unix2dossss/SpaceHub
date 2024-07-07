@@ -4,14 +4,20 @@ import { BrowserRouter as Router, Route, Routes, RouterProvider, createBrowserRo
 import Home from './Components/Homepage/Home';
 import NotFoundImage from './Components/NotFound/NotFoundImage';
 import FaqWithImage from './Components/FAQ/FaqWithImage';
-import HeaderSimple from './Components/Header/HeaderSimple'; // Updated import for HeaderSimple
 import About from './Components/AboutUs/About';
 import Membership from './Components/Membership/Membership';
 import Events from './Components/Events/Events';
 import Layout from './Components/Layout';
-import { AdminLayout } from './Components/AdminLayout';
-import CardsCarousel from './Components/Events/CardsCarousel';
+import { AdminLayout } from './Components/Admin/AdminLayout';
 import Login from './Components/Admin/Login';
+import LoginV2 from './Components/Admin/LoginV2';
+import LoginV3 from './Components/Admin/LoginV3';
+import Register from './Components/Admin/Register';
+import AdminLayoutV2 from './Components/Admin/AdminLayoutV2';
+import Portal from './Components/Admin/Portal';
+import ManageMembers from './Components/Admin/ManageMembers';
+import ManageEvents from './Components/Admin/ManageEvents';
+
 
 const theme = createTheme({
     fontFamily: 'Greycliff CF, sans-serif',
@@ -21,28 +27,86 @@ const theme = createTheme({
     },
 });
 
+//const router = createBrowserRouter([
+//    {
+//        path: "*",
+//        element: <NotFoundImage />,
+//    },
+//    {
+//        path: "/admin",
+//        element: <Login />,
+//    },
+//    {
+//        path: "/admin/portal",
+//        element: <AdminLayout />,
+//        children: [
+//            {
+//                path: "/admin/portal",
+//                element: <Home />, // Admin home page
+//            },
+//            {
+//                path: "/admin/portal/events",
+//                element: <Events />,
+//            },
+//            {
+//                path: "/admin/portal/members",
+//                element: <Membership />,
+//            },
+//        ],
+//    },
+//    {
+//        path: "/",
+//        element: <Layout />,
+//        children: [
+//            {
+//                path: "",
+//                element: <Home />,
+//            },
+//            {
+//                path: "about",
+//                element: <About />,
+//            },
+//            {
+//                path: "faq",
+//                element: <FaqWithImage />,
+//            },
+//            {
+//                path: "events",
+//                element: <Events />,
+//            },
+//            {
+//                path: "membership",
+//                element: <Membership />,
+//            },
+//        ],
+//    },
+//]);
+
+
 const router = createBrowserRouter([
     {
+        path: "*",
+        element: <NotFoundImage />,
+    },
+    {
         path: "/admin",
-        element: <Login />,
+        element: <LoginV3 />,
+    },
+    {
+        path: "/admin/register",
+        element: <Register />,
     },
     {
         path: "/admin/portal",
-        element: <AdminLayout />,
-        children: [
-            {
-                path: "/admin/portal",
-                element: <Home />, // Admin home page
-            },
-            {
-                path: "/admin/portal/events",
-                element: <Events />,
-            },
-            {
-                path: "/admin/portal/members",
-                element: <Membership />,
-            },
-        ],
+        element: <Portal></Portal>,
+    },
+    {
+        path: "/admin/events",
+        element: <ManageEvents/>,
+    },
+    {
+        path: "/admin/members",
+        element: <ManageMembers/>,
     },
     {
         path: "/",
@@ -73,26 +137,10 @@ const router = createBrowserRouter([
 ]);
 
 
-
 function App() {
     return (
         <MantineProvider forceColorScheme='dark'>
-            {/*<Router>*/}
-            {/*    */}{/*<HeaderSimple />  Render HeaderSimple outside of Routes */}
-            {/*    <Routes>*/}
-            {/*        <Route path="/" element={<Layout> <Home/> </Layout>} />*/}
-            {/*        <Route path="/about" element={<Layout> <About /> </Layout>} />*/}
-            {/*        <Route path="/faq" element={<Layout> <FaqWithImage /> </Layout>} />*/}
-            {/*        <Route path="/events" element={<Layout> <Events /> </Layout>} />*/}
-            {/*        <Route path="/membership" element={<Layout> <Membership /> </Layout>} />*/}
-            {/*        <Route path="/admin" element={<Login />} />*/}
-            {/*        <Route path="/admin/events" element={<AdminLayout> <Membership /> </AdminLayout>} />*/}
-            {/*        <Route path="/admin/membership" element={<AdminLayout> <Membership /> </AdminLayout>} />*/}
-            {/*        <Route path="*" element={<Layout> <NotFoundImage /> </Layout>} />*/}
-            {/*    </Routes>*/}
-            {/*</Router>*/}
             <RouterProvider router={router} />
-            
         </MantineProvider>
     );
 }

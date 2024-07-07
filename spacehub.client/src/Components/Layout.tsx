@@ -7,8 +7,6 @@ import { IconCopyright } from '@tabler/icons-react';
 import { Outlet } from "react-router-dom";
 
 
-
-
 function Layout() {
     const [opened, { toggle }] = useDisclosure();
 
@@ -59,9 +57,6 @@ function Layout() {
                     <Link to="/membership" className={classes.link}>
                         <UnstyledButton className={classes.link}>Join Us</UnstyledButton>
                     </Link>
-                    {/*<Link to="/launches" className={classes.link}*/}
-                    {/*    <UnstyledButton className={classes.link}>Launches</UnstyledButton>*/}
-                    {/*</Link>*/}
                 </Stack>  
             </AppShell.Navbar>
 

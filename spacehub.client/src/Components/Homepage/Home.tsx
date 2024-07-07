@@ -1,11 +1,8 @@
-//import HeroBullets from './HeroBullets';
 import HeroImageRight from './HeroImageRight';
 
-
-const Home = () => {
+function Home(){
     return (
         <div>
-            {/*<HeroBullets></HeroBullets>*/}
             <HeroImageRight></HeroImageRight>
         </div>
     );

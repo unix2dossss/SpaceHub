@@ -3,6 +3,7 @@ import classes from './HeroImageRight.module.css';
 
 function HeroImageRight() {
     return (
+        <div className={classes.heroContainer}>
         <div className={classes.root}>
             <Container size="lg">
                 <div className={classes.inner}>
@@ -37,6 +38,7 @@ function HeroImageRight() {
                     </div>
                 </div>
             </Container>
+            </div>
         </div>
     );
 }

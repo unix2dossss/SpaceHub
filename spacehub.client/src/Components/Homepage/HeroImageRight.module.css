@@ -1,3 +1,7 @@
+.heroContainer{
+    min-height: calc(100vh - 120px);
+}
+
 .root {
     background-color: #11284b;
     background-size: cover;
