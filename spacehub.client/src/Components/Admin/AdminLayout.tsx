@@ -34,6 +34,7 @@ export function AdminLayout({children}) {
                             <UnstyledButton className={classes.link}>Manage Members</UnstyledButton>
                         </Link>
                     </Stack>
+                    <AppShell.Section>Navbar footer – always at the bottom</AppShell.Section>
                 </AppShell.Navbar>
                 <AppShell.Main>{children}</AppShell.Main>
             </AppShell>

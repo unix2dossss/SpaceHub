@@ -14,9 +14,25 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import classes from './Login.module.css';
+import { useForm, zodResolver } from '@mantine/form';
+import { z } from 'zod';
 
 
-function Login() {
+function LoginV2() {
+
+    const schema = z.object({
+        email: z.string().email({ message: 'Invalid email' })
+    });
+
+    const form = useForm({
+    mode: 'uncontrolled',
+    initialValues: {
+      email: '',
+    },
+
+    validate: zodResolver(schema),
+
+  });
 
     // state variables for email and passwords
     const [email, setEmail] = useState<string>("");
@@ -39,16 +55,9 @@ function Login() {
     }
 
     // handle submit event for the form
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        // validate email and passwords
-        if (!email || !password) {
-            setError("Please fill in all fields.");
-        } else {
-            // clear error message
-            setError("");
+    const handleSubmit = (values: typeof form.values) => {
+        console.log(values.email);
             // post data to the /register api
-
             var loginurl = "";
             if (rememberme == true)
                 loginurl = "/login?useCookies=true";
@@ -82,10 +91,7 @@ function Login() {
                     console.error(error);
                     setError("Error Logging in.");
                 });
-        }
     };
-
-
 
     return (
         // Can add bg here.
@@ -104,17 +110,36 @@ function Login() {
                 </Text>
 
                 <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                    <TextInput label="Email" placeholder="you@mantine.dev" required />
-                    <PasswordInput label="Password" placeholder="Your password" required mt="md" />
-                    <Group justify="space-between" mt="lg">
-                        <Checkbox label="Remember me" />
-                        <Anchor component="button" size="sm">
-                            Forgot password?
-                        </Anchor>
-                    </Group>
-                    <Button fullWidth mt="xl">
-                        Sign in
-                    </Button>
+                    <form onSubmit={form.onSubmit(handleSubmit)}>
+                        <TextInput
+                            withAsterisk
+                            label="Email"
+                            placeholder="your@email.com"
+                            key={form.key('email')}
+                            {...form.getInputProps('email')}
+                        />
+                        <PasswordInput
+                            mt="md"
+                            label="Password"
+                            placeholder="Your password"
+                            required
+                            key={form.key('password')}
+                            {...form.getInputProps('password')}
+                        />
+                        <Group justify="space-between" mt="lg">
+                            <Checkbox
+                                label="Remember Me"
+                                key={form.key('rememberMe')}
+                                {...form.getInputProps('rememberMe', { type: 'checkbox' })}
+                            />
+                            <Anchor component="button" size="sm">
+                                Forgot password?
+                            </Anchor>
+                        </Group>
+                        <Button type="submit" fullWidth mt="xl">
+                            Sign in
+                        </Button>
+                    </form>
                 </Paper>
             </Container>
         </Center>
@@ -122,4 +147,4 @@ function Login() {
 }
 
 
-export default Login;
+export default LoginV2;

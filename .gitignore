@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/reactnative,dotnetcore,visualstudio,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=reactnative,dotnetcore,visualstudio,visualstudiocode
 
+## Appsettings (Contains Connection String)
+appsettings.json
+
 ### DotnetCore ###
 # .NET Core build folders
 bin/

@@ -1,23 +1,7 @@
-import {
-    TextInput,
-    PasswordInput,
-    Checkbox,
-    Anchor,
-    Paper,
-    Title,
-    Text,
-    Container,
-    Group,
-    Button,
-    Center,
-} from '@mantine/core';
-import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
-import classes from './Login.module.css';
-
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-
     // state variables for email and passwords
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -82,44 +66,55 @@ function Login() {
                     console.error(error);
                     setError("Error Logging in.");
                 });
-        }
+        
     };
 
-
-
     return (
-        // Can add bg here.
-        <Center w="100vw" h="100vh">
-            <Container size={420} my={40}>
-                <Title ta="center" className={classes.title}>
-                    Executive Portal
-                </Title>
-                <Text c="dimmed" size="sm" ta="center" mt={5}>
-                    Here by accident?{' '}
-                    <Anchor size="sm" component="button">
-                        <Link to="/" className={classes.link}>
-                            Go Back
-                        </Link>
-                    </Anchor>
-                </Text>
-
-                <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                    <TextInput label="Email" placeholder="you@mantine.dev" required />
-                    <PasswordInput label="Password" placeholder="Your password" required mt="md" />
-                    <Group justify="space-between" mt="lg">
-                        <Checkbox label="Remember me" />
-                        <Anchor component="button" size="sm">
-                            Forgot password?
-                        </Anchor>
-                    </Group>
-                    <Button fullWidth mt="xl">
-                        Sign in
-                    </Button>
-                </Paper>
-            </Container>
-        </Center>
+        <div className="containerbox">
+            <h3>Login</h3>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label className="forminput" htmlFor="email">Email:</label>
+                </div>
+                <div>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={email}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Password:</label>
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={password}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <input
+                        type="checkbox"
+                        id="rememberme"
+                        name="rememberme"
+                        checked={rememberme}
+                        onChange={handleChange} /><span>Remember Me</span>
+                </div>
+                <div>
+                    <button type="submit">Login</button>
+                </div>
+                <div>
+                    <button onClick={handleRegisterClick}>Register</button>
+                </div>
+            </form>
+            {error && <p className="error">{error}</p>}
+        </div>
     );
 }
-
 
 export default Login;

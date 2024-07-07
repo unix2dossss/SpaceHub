@@ -10,6 +10,13 @@ import Events from './Components/Events/Events';
 import Layout from './Components/Layout';
 import { AdminLayout } from './Components/Admin/AdminLayout';
 import Login from './Components/Admin/Login';
+import LoginV2 from './Components/Admin/LoginV2';
+import LoginV3 from './Components/Admin/LoginV3';
+import Register from './Components/Admin/Register';
+import AdminLayoutV2 from './Components/Admin/AdminLayoutV2';
+import Portal from './Components/Admin/Portal';
+import ManageMembers from './Components/Admin/ManageMembers';
+import ManageEvents from './Components/Admin/ManageEvents';
 
 
 const theme = createTheme({
@@ -83,11 +90,23 @@ const router = createBrowserRouter([
     },
     {
         path: "/admin",
-        element: <Login />,
+        element: <LoginV3 />,
+    },
+    {
+        path: "/admin/register",
+        element: <Register />,
     },
     {
         path: "/admin/portal",
-        element: <AdminLayout><Home></Home></AdminLayout>,
+        element: <Portal></Portal>,
+    },
+    {
+        path: "/admin/events",
+        element: <ManageEvents/>,
+    },
+    {
+        path: "/admin/members",
+        element: <ManageMembers/>,
     },
     {
         path: "/",
