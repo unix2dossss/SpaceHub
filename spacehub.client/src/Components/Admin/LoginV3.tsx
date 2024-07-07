@@ -36,9 +36,9 @@ function LoginV2() {
     const [error, setError] = useState<string>("");
     const navigate = useNavigate();
 
-    const handleRegisterClick = () => {
-        navigate("/register");
-    }
+    //const handleRegisterClick = () => {
+    //    navigate("/admin/register");
+    //}
 
     const handleSubmit = (values: typeof form.values) => {
         const { email, password, rememberMe } = values;
@@ -111,9 +111,9 @@ function LoginV2() {
                         <Button type="submit" fullWidth mt="xl">
                             Sign in
                         </Button>
-                        <Button fullWidth mt="md" onClick={handleRegisterClick}>
-                            Register
-                        </Button>
+                        {/*<Button fullWidth mt="md" onClick={handleRegisterClick}>*/}
+                        {/*    Register*/}
+                        {/*</Button>*/}
                     </form>
                     {error && <Text color="red" mt="md">{error}</Text>}
                 </Paper>

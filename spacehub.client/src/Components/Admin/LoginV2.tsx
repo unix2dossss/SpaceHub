@@ -51,7 +51,7 @@ function LoginV2() {
     };
 
     const handleRegisterClick = () => {
-        navigate("/register");
+        navigate("/admin/register");
     }
 
     // handle submit event for the form

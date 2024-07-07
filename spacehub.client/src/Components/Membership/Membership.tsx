@@ -1,11 +1,11 @@
 import EmailBanner from "./EmailBanner";
-import Join from "./Join";
+import JoinV2 from "./JoinV2";
 
 function Membership() {
 
     return (
         <div>
-            <Join></Join>
+            <JoinV2></JoinV2>
             <EmailBanner></EmailBanner>
         </div>
     );
