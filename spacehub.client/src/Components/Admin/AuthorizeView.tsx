@@ -1,5 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { Navigate } from 'react-router-dom';
+import { MantineProvider, Loader } from '@mantine/core';
+import RingLoader from './RingLoader';
 
 
 const UserContext = createContext({});
@@ -80,9 +82,20 @@ function AuthorizeView(props: { children: React.ReactNode }) {
 
     if (loading) {
         return (
-            <>
-                <p>Loading...</p>
-            </>
+            <MantineProvider
+                theme={{
+                    components: {
+                        Loader: Loader.extend({
+                            defaultProps: {
+                                loaders: { ...Loader.defaultLoaders, ring: RingLoader },
+                                type: 'ring',
+                            },
+                        }),
+                    },
+                }}
+            >
+                <Loader />
+            </MantineProvider>
         );
     }
     else {

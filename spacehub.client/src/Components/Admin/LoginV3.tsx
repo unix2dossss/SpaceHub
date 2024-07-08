@@ -18,6 +18,8 @@ import { z } from 'zod';
 import classes from './Login.module.css';
 
 function LoginV2() {
+    const [value, setValue] = useState('react');
+
     const schema = z.object({
         email: z.string().email({ message: 'Invalid email' }),
         password: z.string().min(1, { message: 'Password is required' }),
@@ -58,7 +60,7 @@ function LoginV2() {
             .then((response) => {
                 if (response.ok) {
                     setError("Successful Login.");
-                    window.location.href = '/';
+                    window.location.href = '/admin/portal';
                 } else {
                     setError("Error Logging In.");
                 }
