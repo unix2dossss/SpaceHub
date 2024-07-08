@@ -1,6 +1,6 @@
 import './App.css';
 import { MantineProvider, createTheme } from '@mantine/core';
-import { BrowserRouter as Router, Route, Routes, RouterProvider, createBrowserRouter } from 'react-router-dom'; // Import Routes instead of Switch
+import { BrowserRouter as Router, Route, Routes, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './Components/Homepage/Home';
 import NotFoundImage from './Components/NotFound/NotFoundImage';
 import FaqWithImage from './Components/FAQ/FaqWithImage';
@@ -8,15 +8,11 @@ import About from './Components/AboutUs/About';
 import Membership from './Components/Membership/Membership';
 import Events from './Components/Events/Events';
 import Layout from './Components/Layout';
-import { AdminLayout } from './Components/Admin/AdminLayout';
-import Login from './Components/Admin/Login';
-import LoginV2 from './Components/Admin/LoginV2';
 import LoginV3 from './Components/Admin/LoginV3';
 import Register from './Components/Admin/Register';
-import AdminLayoutV2 from './Components/Admin/AdminLayoutV2';
 import Portal from './Components/Admin/Portal';
-import ManageMembers from './Components/Admin/ManageMembers';
-import ManageEvents from './Components/Admin/ManageEvents';
+import ManageMembers from './Components/Admin/ManageMembers/ManageMembers';
+import ManageEvents from './Components/Admin/ManageEvents/ManageEvents';
 
 
 const theme = createTheme({
@@ -26,61 +22,6 @@ const theme = createTheme({
         'bright-pink': ['#F0BBDD', '#ED9BCF', '#EC7CC3', '#ED5DB8', '#F13EAF', '#F71FA7', '#FF00A1', '#E00890', '#C50E82', '#AD1374'],
     },
 });
-
-//const router = createBrowserRouter([
-//    {
-//        path: "*",
-//        element: <NotFoundImage />,
-//    },
-//    {
-//        path: "/admin",
-//        element: <Login />,
-//    },
-//    {
-//        path: "/admin/portal",
-//        element: <AdminLayout />,
-//        children: [
-//            {
-//                path: "/admin/portal",
-//                element: <Home />, // Admin home page
-//            },
-//            {
-//                path: "/admin/portal/events",
-//                element: <Events />,
-//            },
-//            {
-//                path: "/admin/portal/members",
-//                element: <Membership />,
-//            },
-//        ],
-//    },
-//    {
-//        path: "/",
-//        element: <Layout />,
-//        children: [
-//            {
-//                path: "",
-//                element: <Home />,
-//            },
-//            {
-//                path: "about",
-//                element: <About />,
-//            },
-//            {
-//                path: "faq",
-//                element: <FaqWithImage />,
-//            },
-//            {
-//                path: "events",
-//                element: <Events />,
-//            },
-//            {
-//                path: "membership",
-//                element: <Membership />,
-//            },
-//        ],
-//    },
-//]);
 
 
 const router = createBrowserRouter([

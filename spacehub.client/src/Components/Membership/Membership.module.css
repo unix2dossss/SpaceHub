@@ -12,9 +12,9 @@
 
 .form {
     flex: 1;
-    padding: var(--mantine-spacing-xl);
+    padding: var(--mantine-spacing-sm);
     padding-top: var(--mantine-spacing-sm);
-    padding-left: calc(var(--mantine-spacing-xl) * 2);
+    padding-left: var(--mantine-spacing-sm);
     border-left: 0;
 
     @media (max-width: $mantine-breakpoint-sm) {
@@ -82,5 +82,13 @@
 }
 
 .separator {
-    max-width: 6em;
+    max-width: 1em;
+}
+
+.steps {
+     min-width: 26em;
+}
+
+.root {
+    width: 30em;
 }
