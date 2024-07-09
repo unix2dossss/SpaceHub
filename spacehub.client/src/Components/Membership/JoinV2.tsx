@@ -1,33 +1,25 @@
 import {
     TextInput,
-    PasswordInput,
     Checkbox,
-    Anchor,
     Paper,
-    Title,
     Text,
     Container,
-    Group,
     Button,
     Center,
     SimpleGrid,
-    Textarea,
     Stepper,
     NativeSelect,
     MultiSelect,
-    SegmentedControl,
-    Blockquote,
     Table,
     Fieldset,
 } from '@mantine/core';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
-import { useForm, zodResolver } from '@mantine/form';
-import { z } from 'zod';
 import classes from './Membership.module.css';
 import { ContactIconsList } from './ContactIconsList';
 import triangle from '../../assets/large-triangles.svg';
-import { IconInfoCircle, IconSticker } from '@tabler/icons-react';
+import { IconSticker } from '@tabler/icons-react';
+import { useForm } from '@mantine/form';
 
 
 function JoinV2() {
@@ -127,10 +119,6 @@ function JoinV2() {
         });
 
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
-
-    //const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    //    event.preventDefault();
-    //};
 
     const handleSubmit = (values: typeof form.values) => {
         const { firstname, lastname, email, pronouns, studentid, upi, study, major } = values;
