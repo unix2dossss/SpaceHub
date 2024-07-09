@@ -1,5 +1,5 @@
 import { Text, Box, Stack, rem } from '@mantine/core';
-import { IconSun, IconBrandInstagram, IconBrandFacebook, IconAt, IconBrandDiscord } from '@tabler/icons-react';
+import { IconSun, IconBrandInstagram, IconBrandFacebook, IconAt, IconBrandDiscord, IconBrandLinkedin } from '@tabler/icons-react';
 import classes from './ContactIcons.module.css';
 
 interface ContactIconProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'title'> {
@@ -26,11 +26,11 @@ function ContactIcon({ icon: Icon, title, description, ...others }: ContactIconP
 }
 
 const MOCKDATA = [
-  { title: 'Email', description: 'hello@mantine.dev', icon: IconAt },
-  { title: 'Discord', description: 'hello@mantine.dev', icon: IconBrandDiscord },
-  { title: 'Instagram', description: '+49 (800) 335 35 35', icon: IconBrandInstagram },
-  { title: 'Facebook', description: '844 Morris Park avenue', icon: IconBrandFacebook },
-  { title: 'Working hours', description: '8 a.m. – 11 p.m.', icon: IconSun },
+  { title: 'Email', description: 'spacehub.uoa@gmail.com', icon: IconAt },
+  { title: 'Discord', description: 'Spacehub Discord Server', icon: IconBrandDiscord },
+  { title: 'Instagram', description: '@sha_uoa', icon: IconBrandInstagram },
+  { title: 'Facebook', description: 'Space Hub Auckland', icon: IconBrandFacebook },
+  { title: 'LinkedIn', description: 'Stay Connected', icon: IconBrandLinkedin },
 ];
 
 export function ContactIconsList() {

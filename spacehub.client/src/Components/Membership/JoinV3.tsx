@@ -11,7 +11,6 @@ import {
     Stepper,
     NativeSelect,
     MultiSelect,
-    Table,
     Fieldset,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
@@ -25,32 +24,6 @@ const elements = [
 ];
 
 function JoinV3() {
-    //const [selectedRows, setSelectedRows] = useState<string[]>([]);
-
-    //const elements = [
-    //    { semester: 'One', cost: '$5' },
-    //    { semester: 'Two', cost: '$7' },
-    //];
-
-    //const rows = elements.map((element) => (
-    //    <Table.Tr
-    //        key={element.cost}
-    //        bg={selectedRows.includes(element.semester) ? 'var(--mantine-color-blue-light)' : undefined}
-    //    >
-    //        <Table.Td>
-    //            <Checkbox
-    //                aria-label="Select row"
-    //                checked={selectedRows.includes(element.semester)}
-    //                onChange={(event) =>
-    //                    setSelectedRows(event.currentTarget.checked ? [element.semester] : [])
-    //                }
-    //            />
-    //        </Table.Td>
-    //        <Table.Td>{element.semester}</Table.Td>
-    //        <Table.Td>{element.cost}</Table.Td>
-    //    </Table.Tr>
-    //));
-
     const form = useForm({
         initialValues: {
             firstname: '',
@@ -95,16 +68,12 @@ function JoinV3() {
                 };
             }
 
-            if (active === 2) {
-                return {
-                    //selectedRows:
-                    //    selectedRows.length === 0 ? 'You must select a sign-up plan' : undefined,
-                };
-            }
-
             return {};
         },
     });
+
+    const [active, setActive] = useState(0);
+    const [selectedSemester, setSelectedSemester] = useState(form.values.semesterplan);
 
     const handleSemesterChange = (event) => {
         const value = event.currentTarget.value;
@@ -116,9 +85,7 @@ function JoinV3() {
         form.setFieldValue('payoffline', event.currentTarget.checked); // Update form state
     };
 
-    const [selectedSemester, setSelectedSemester] = useState(form.values.semesterplan);
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event) => {
         event.preventDefault(); // Prevent default form submission
         const { firstname, lastname, email, pronouns, studentid, upi, study, major, semesterplan, payoffline } = form.values;
 
@@ -142,8 +109,6 @@ function JoinV3() {
             setActive((prev) => prev + 1);
         }
     };
-
-    const [active, setActive] = useState(0);
 
     return (
         <Center w="100vw" h="100vh">
@@ -194,6 +159,7 @@ function JoinV3() {
                                             <NativeSelect
                                                 label="Pronouns"
                                                 data={['', 'She/Her', 'He/Him', 'They/Them']}
+                                                {...form.getInputProps('pronouns')}
                                             />
                                             <Button
                                                 mt="24px"
@@ -258,54 +224,11 @@ function JoinV3() {
                                 </Stepper.Step>
                                 <Stepper.Step label="Registration" description="Confirmation">
                                     <div className={classes.fields}>
-                                        {/*<Text size="md" mt="lg" fw={500}>*/}
-                                        {/*    Select Sign-Up Plan*/}
-                                        {/*</Text>*/}
-                                        {/*<Table highlightOnHover mt="md">*/}
-                                        {/*    <Table.Thead>*/}
-                                        {/*        <Table.Tr>*/}
-                                        {/*            <Table.Th>Select</Table.Th>*/}
-                                        {/*            <Table.Th>Semesters</Table.Th>*/}
-                                        {/*            <Table.Th>Cost</Table.Th>*/}
-                                        {/*        </Table.Tr>*/}
-                                        {/*    </Table.Thead>*/}
-                                        {/*    <Table.Tbody>{rows}</Table.Tbody>*/}
-                                        {/*</Table>*/}
-                                        {/*{form.errors.selectedRows && (*/}
-                                        {/*    <Text color="red" size="sm" mt="md">*/}
-                                        {/*        {form.errors.selectedRows}*/}
-                                        {/*    </Text>*/}
-                                        {/*)}*/}
-                                        {/*{selectedRows.length > 0 && (*/}
-                                        {/*    <>*/}
-                                                {/*<Fieldset mt="lg" legend="Transfer Payment Instructions">*/}
-                                                {/*    <Text size="sm">*/}
-                                                {/*        Amount:{' '}*/}
-                                                {/*        {*/}
-                                                {/*            elements.find((el) =>*/}
-                                                {/*                selectedRows.includes(el.semester)*/}
-                                                {/*            )?.cost*/}
-                                                {/*        }*/}
-                                                {/*    </Text>*/}
-                                                {/*    <Text size="sm" mt="0.5em">*/}
-                                                {/*        Account Number: 01-0288-0286940-00*/}
-                                                {/*    </Text>*/}
-                                                {/*    <Text size="sm">*/}
-                                                {/*        Particular: {form.values.studentid}*/}
-                                                {/*    </Text>*/}
-                                                {/*    <Text size="sm">*/}
-                                                {/*        Reference: {form.values.firstname}{' '}*/}
-                                                {/*        {form.values.lastname}*/}
-                                                {/*    </Text>*/}
-                                                {/*</Fieldset>*/}
-                                        {/*    </>*/}
-                                        {/*)}*/}
                                         <NativeSelect
                                             label="Select Semester"
                                             description="Choose your semester duration and fee"
                                             data={elements.map((el) => el.semester)}
                                             value={form.values.semesterplan}
-                                            key={form.key('semesterplan')}
                                             {...form.getInputProps('semesterplan')}
                                             onChange={handleSemesterChange}
                                         />
@@ -333,12 +256,10 @@ function JoinV3() {
                                             onChange={handleCheckboxChange}
                                         />
 
-
                                         <Button
                                             mt="lg"
                                             type="submit"
                                             className={classes.control}
-                                            onClick={handleSubmit}
                                         >
                                             Register
                                         </Button>
