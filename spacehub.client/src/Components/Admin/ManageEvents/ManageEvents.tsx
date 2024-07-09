@@ -9,20 +9,21 @@ import {
     Button,
     Container,
     SimpleGrid,
-    Group,
-    MantineProvider
+    MantineProvider,
+    Divider
 } from '@mantine/core';
 import { useState } from 'react';
 import classes from './ManageEvents.module.css';
 import AuthorizeView from '../AuthorizeView';
 import AdminLayoutV2 from '../AdminLayoutV2';
+import CardsCarousel from '../../Events/CardsCarousel';
 
 function ManageEvents() {
     const [eventCategory, setEventCategory] = useState('');
     const [eventName, setEventName] = useState('');
     const [eventDescription, setEventDescription] = useState('');
     const [eventLink, setEventLink] = useState('');
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState<File | null>(null);
 
     return (
         <MantineProvider forceColorScheme='dark'>
@@ -66,7 +67,8 @@ function ManageEvents() {
                                 />
                             </div>
 
-                            <Paper shadow="md" radius="lg" p="md" withBorder className={classes.cardPreview}>
+                            <Paper shadow="md" radius="lg" p="md" withBorder className={classes.cardPreview}
+                                style={{ backgroundImage: image ? `url(${URL.createObjectURL(image)})` : 'none' }}>
                                 <div>
                                     <Text className={classes.category} size="xs">
                                         {eventCategory || 'Event Category'}
@@ -83,12 +85,11 @@ function ManageEvents() {
                                         </Button>
                                     )}
                                 </div>
-                                {image && (
-                                    <img src={URL.createObjectURL(image)} alt="Card Background" className={classes.image} />
-                                )}
                             </Paper>
                         </SimpleGrid>
                     </Container>
+                    <Divider mt="xl"></Divider>
+                    <CardsCarousel></CardsCarousel>
                 </AdminLayoutV2>
             </AuthorizeView>
         </MantineProvider>
