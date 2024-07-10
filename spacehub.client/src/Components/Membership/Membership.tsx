@@ -6,7 +6,7 @@ function Membership() {
     return (
         <div>
             <JoinV3></JoinV3>
-            <EmailBanner></EmailBanner>
+            {/*<EmailBanner></EmailBanner>*/}
         </div>
     );
 }

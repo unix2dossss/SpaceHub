@@ -56,7 +56,7 @@ function JoinV3() {
                     studentid:
                         values.studentid === undefined || values.studentid.trim().length === 0
                             ? 'Student ID is required'
-                            : /^\d{10}$/.test(values.studentid)
+                            : /^\d{9}$/.test(values.studentid)
                                 ? undefined
                                 : 'Invalid Student ID',
                     upi:
@@ -130,8 +130,8 @@ function JoinV3() {
     };
 
     return (
-        <Center w="100vw" h="100vh">
-            <Container size="xl" my={40}>
+        <Center>
+            <Container size="xl" my={40} >
                 <Paper shadow="md" radius="lg">
                     <div className={classes.wrapper}>
                         <div className={classes.contacts} style={{ backgroundImage: `url(${triangle})` }}>

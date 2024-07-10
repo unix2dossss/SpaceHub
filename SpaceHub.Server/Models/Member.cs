@@ -42,6 +42,11 @@ namespace SpaceHub.Server.Models
         public bool PayOffline { get; set; }
 
         // Additional property for storing the list as a single string in the database
+
+        public bool Paid { get; set; } = false;
+
+        // Additional property for storing the list as a single string in the database
+
         public string StudySerialized
         {
             get => string.Join(",", Study);
