@@ -62,7 +62,7 @@ function JoinV3() {
                     upi:
                         values.upi.trim().length === 0
                             ? 'UPI is required'
-                            : /^[a-zA-Z]{4}\d{3,4}$/.test(values.upi)
+                            : /^[a-zA-Z]{3,4}\d{3}$/.test(values.upi)
                                 ? undefined
                                 : 'Invalid UPI',
                 };

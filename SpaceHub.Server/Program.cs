@@ -7,7 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
+// DbContext for Auth Endpoints
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+// DbContext for Members
+builder.Services.AddDbContext<MemberDbContext>(options => options.UseSqlServer(connectionString,
+    options => options.EnableRetryOnFailure(
+                    maxRetryCount: 10,
+                    maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null)
+                )
+    );
 
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
