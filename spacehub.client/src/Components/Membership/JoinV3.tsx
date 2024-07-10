@@ -85,22 +85,41 @@ function JoinV3() {
         form.setFieldValue('payoffline', event.currentTarget.checked); // Update form state
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent default form submission
         const { firstname, lastname, email, pronouns, studentid, upi, study, major, semesterplan, payoffline } = form.values;
 
-        console.log('Form submitted with values:', {
-            firstname,
-            lastname,
-            email,
-            pronouns,
-            studentid,
-            upi,
-            study,
-            major,
-            semesterplan,
-            payoffline
-        });
+        try {
+            const response = await fetch('/api/Member', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstname,
+                    lastname,
+                    email,
+                    pronouns,
+                    studentid,
+                    upi,
+                    study,
+                    major,
+                    semesterplan,
+                    payoffline,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const result = await response.json();
+            console.log('Form submitted successfully:', result);
+
+            // You can also reset the form or show a success message here
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
     };
 
     const handleNext = () => {
