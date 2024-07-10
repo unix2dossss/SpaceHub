@@ -2,7 +2,7 @@
     display: flex;
     background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
     border-radius: var(--mantine-radius-lg);
-    padding: rem(4px);
+    padding: rem(15px);
     border: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-8));
 
     @media (max-width: $mantine-breakpoint-sm) {
@@ -89,6 +89,6 @@
      min-width: 26em;
 }
 
-.root {
+/*.root {
     width: 30em;
-}
+}*/

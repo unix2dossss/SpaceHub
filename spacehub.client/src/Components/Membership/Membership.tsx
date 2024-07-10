@@ -1,12 +1,12 @@
 import EmailBanner from "./EmailBanner";
-import JoinV2 from "./JoinV2";
+import JoinV3 from "./JoinV3";
 
 function Membership() {
 
     return (
         <div>
-            <JoinV2></JoinV2>
-            <EmailBanner></EmailBanner>
+            <JoinV3></JoinV3>
+            {/*<EmailBanner></EmailBanner>*/}
         </div>
     );
 }
