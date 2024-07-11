@@ -13,6 +13,7 @@ import Register from './Components/Admin/Register';
 import Portal from './Components/Admin/Portal';
 import ManageMembers from './Components/Admin/ManageMembers/ManageMembers';
 import ManageEvents from './Components/Admin/ManageEvents/ManageEvents';
+import ManageExecs from './Components/Admin/ManageExecs/ManageExecs';
 
 
 const theme = createTheme({
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
     {
         path: "/admin/members",
         element: <ManageMembers/>,
+    },
+    {
+        path: "/admin/execs",
+        element: <ManageExecs/>,
     },
     {
         path: "/",

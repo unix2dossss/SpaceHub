@@ -29,6 +29,9 @@ function AdminLayoutV2({ children }) {
                         <Link to="/admin/members" className={classes.link}>
                             <UnstyledButton className={classes.link}>Manage Members</UnstyledButton>
                         </Link>
+                        <Link to="/admin/execs" className={classes.link}>
+                            <UnstyledButton className={classes.link}>Manage Executives</UnstyledButton>
+                        </Link>
                     </Stack>
                 </AppShell.Section>
                 <AppShell.Section>
