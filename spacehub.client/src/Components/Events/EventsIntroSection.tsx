@@ -29,10 +29,6 @@ const features = [
 ];
 
 function EventsIntroSection() {
-    const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
-        offset: 60,
-    });
-
     const items = features.map((feature) => (
         <div key={feature.title}>
             <ThemeIcon
@@ -53,37 +49,34 @@ function EventsIntroSection() {
     ));
 
     return (
-        <div className={classes.wrapper}>
-            <Grid gutter={80}>
-                <Grid.Col span={{ base: 12, md: 5 }}>
-                    <Title className={classes.title} order={2}>
-                        A fully featured React components library for your next project
-                    </Title>
-                    <Text mt="md" c="dimmed">
-                        Discover the universe with SpaceHub, your gateway to all things space-related. Join us for exciting events and activities that celebrate the cosmos and inspire curiosity about our universe.
-                    </Text>
+        <div className={classes.introdiv}>
+            <div className={classes.wrapper}>
+                <Grid gutter={80}>
+                    <Grid.Col span={{ base: 12, md: 5 }}>
+                        <Title className={classes.title} order={2}>
+                            A fully featured React components library for your next project
+                        </Title>
+                        <Text mt="md" c="dimmed">
+                            Discover the universe with SpaceHub, your gateway to all things space-related. Join us for exciting events and activities that celebrate the cosmos and inspire curiosity about our universe.
+                        </Text>
 
-                    <Button
-                        variant="gradient"
-                        gradient={{ deg: 133, from: 'blue', to: 'cyan' }}
-                        size="lg"
-                        radius="md"
-                        mt="xl"
-                        onClick={() =>
-                            scrollIntoView({
-                                alignment: 'center',
-                            })
-                        }
-                    >
-                        Get started
-                    </Button>
-                </Grid.Col>
-                <Grid.Col span={{ base: 12, md: 7 }} ref={targetRef}>
-                    <SimpleGrid cols={{ base: 1, md: 2 }} spacing={30}>
-                        {items}
-                    </SimpleGrid>
-                </Grid.Col>
-            </Grid>
+                        <Button
+                            variant="gradient"
+                            gradient={{ deg: 133, from: 'blue', to: 'cyan' }}
+                            size="lg"
+                            radius="md"
+                            mt="xl"
+                        >
+                            Get started
+                        </Button>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, md: 7 }}>
+                        <SimpleGrid cols={{ base: 1, md: 2 }} spacing={30}>
+                            {items}
+                        </SimpleGrid>
+                    </Grid.Col>
+                </Grid>
+            </div>
         </div>
     );
 }
