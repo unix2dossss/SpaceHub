@@ -25,6 +25,14 @@ builder.Services.AddDbContext<ExecutiveDbContext>(options => options.UseSqlServe
                     errorNumbersToAdd: null)
                 )
     );
+// DbContext for Events
+builder.Services.AddDbContext<EventDbContext>(options => options.UseSqlServer(connectionString,
+    options => options.EnableRetryOnFailure(
+                    maxRetryCount: 10,
+                    maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null)
+                )
+    );
 
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
