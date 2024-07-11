@@ -1,3 +1,10 @@
+.ourStoryWrapper {
+    padding-top: calc(1.5rem* var(--mantine-scale));
+    max-width: calc(75rem* var(--mantine-scale));
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .wrapper {
     padding: calc(var(--mantine-spacing-xl) * 2) var(--mantine-spacing-xl);
 }

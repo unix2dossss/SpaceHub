@@ -1,11 +1,13 @@
-import FeaturesTitle from "./FeaturesTitle";
-import UsersTable from "./UsersTable";
+import AboutHero from "./AboutHero";
+import MeetExecs from "./MeetExecs";
+import OurStory from "./OurStory";
 
 const About = () => {
     return (
         <div>
-            <FeaturesTitle></FeaturesTitle>
-            <UsersTable></UsersTable>
+            <AboutHero></AboutHero>
+            <OurStory></OurStory>
+            <MeetExecs></MeetExecs>
         </div>
     );
 }
