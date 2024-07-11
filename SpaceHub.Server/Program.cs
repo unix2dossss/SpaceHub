@@ -17,6 +17,14 @@ builder.Services.AddDbContext<MemberDbContext>(options => options.UseSqlServer(c
                     errorNumbersToAdd: null)
                 )
     );
+// DbContext for Executives
+builder.Services.AddDbContext<ExecutiveDbContext>(options => options.UseSqlServer(connectionString,
+    options => options.EnableRetryOnFailure(
+                    maxRetryCount: 10,
+                    maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null)
+                )
+    );
 
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
