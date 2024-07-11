@@ -1,0 +1,12 @@
+.logo {
+    font-family: 'SpacedFont', sans-serif;
+    display: inline-block;
+    transform: scaleX(1.5); /* Adjust the scale factor as needed */
+    transform-origin: left; /* Keeps the text aligned to the left while scaling */
+    letter-spacing: 2px;
+}
+
+h3 {
+    margin: 0;
+    height: 15px;
+}
