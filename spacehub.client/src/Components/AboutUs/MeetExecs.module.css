@@ -1,5 +1,5 @@
 .titleContainer {
-    padding-top: calc(1.5rem* var(--mantine-scale));
+    /*padding-top: calc(1.5rem* var(--mantine-scale));*/
     max-width: calc(80rem* var(--mantine-scale));
     margin-left: auto;
     margin-right: auto;
