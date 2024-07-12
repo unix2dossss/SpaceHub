@@ -33,9 +33,6 @@ function Layout() {
                             <Link to="/membership" className={classes.link}>
                                 <UnstyledButton className={classes.link}>Join Us</UnstyledButton>
                             </Link>
-                            {/*<Link to="/launches" className={classes.link}*/}
-                            {/*    <UnstyledButton className={classes.link}>Launches</UnstyledButton>*/}
-                            {/*</Link>*/}
                         </Group>
                     </Group>
                 </Group>
