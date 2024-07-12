@@ -1,9 +1,9 @@
-import HeroImageRight from './HeroImageRight';
+import Hero from './Hero';
 
 function Home(){
     return (
         <div>
-            <HeroImageRight></HeroImageRight>
+            <Hero></Hero>
         </div>
     );
 }

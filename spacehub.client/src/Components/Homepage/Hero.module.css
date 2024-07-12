@@ -1,8 +1,9 @@
-.heroContainer{
+/*.heroContainer{
     min-height: calc(100vh - 120px);
-}
+}*/
 
 .root {
+    height: calc(100vh - 140px);
     background-color: #11284b;
     background-size: cover;
     background-position: center;
@@ -42,11 +43,11 @@
     font-weight: 900;
     line-height: 1.05;
     max-width: rem(500px);
-    font-size: rem(48px);
+    font-size: rem(90px);
 
     @media (max-width: $mantine-breakpoint-md) {
         max-width: 100%;
-        font-size: rem(34px);
+        font-size: rem(30px);
         line-height: 1.15;
     }
 }

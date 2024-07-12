@@ -12,12 +12,11 @@ function Layout() {
 
     return (
         <AppShell
-            header={{ height: 60 }}
+            header={{ height: 80 }}
             navbar={{ width: 300, breakpoint: 'sm', collapsed: { desktop: true, mobile: !opened } }}
-            footer={{ height: 60, offset: true }}
-            padding="xs"
+            footer={{ height: 60, offset: true}}
         >
-            <AppShell.Header>
+            <AppShell.Header bg="#1A1A1A">
                 <Group h="100%" px="md">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                     <Group justify="space-between" style={{ flex: 1 }}>
@@ -35,9 +34,6 @@ function Layout() {
                             <Link to="/membership" className={classes.link}>
                                 <UnstyledButton className={classes.link}>Join Us</UnstyledButton>
                             </Link>
-                            {/*<Link to="/launches" className={classes.link}*/}
-                            {/*    <UnstyledButton className={classes.link}>Launches</UnstyledButton>*/}
-                            {/*</Link>*/}
                         </Group>
                     </Group>
                 </Group>
@@ -60,11 +56,11 @@ function Layout() {
                 </Stack>  
             </AppShell.Navbar>
 
-            <AppShell.Main>
+            <AppShell.Main bg="#242424">
                 <Outlet/>
             </AppShell.Main>
 
-            <AppShell.Footer p="md"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
+            <AppShell.Footer p="md" bg="#1A1A1A"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
         </AppShell>
     );
 }
