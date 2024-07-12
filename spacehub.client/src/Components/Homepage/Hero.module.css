@@ -1,8 +1,9 @@
-.heroContainer{
+/*.heroContainer{
     min-height: calc(100vh - 120px);
-}
+}*/
 
 .root {
+    height: calc(100vh - 140px);
     background-color: #11284b;
     background-size: cover;
     background-position: center;
