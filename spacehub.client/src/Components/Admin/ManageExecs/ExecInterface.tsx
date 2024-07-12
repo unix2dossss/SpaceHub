@@ -1,11 +1,22 @@
-import { Button, MantineProvider, TextInput } from '@mantine/core';
+import {
+    Text,
+    Title,
+    SimpleGrid,
+    TextInput,
+    Textarea,
+    Button,
+    Group,
+    ActionIcon,
+    Flex,
+} from '@mantine/core';
+import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
+import classes from './ExecInterface.module.css';
+import UsersTable from '../../AboutUs/UsersTable';
 import { useForm } from '@mantine/form';
-import classes from './ManageExecs.module.css';
-import AuthorizeView from '../AuthorizeView';
-import AdminLayoutV2 from '../AdminLayoutV2';
-import ExecInterface from './ExecInterface'
 
-function ManageExecs() {
+const social = [IconBrandTwitter, IconBrandYoutube, IconBrandInstagram];
+
+function ExecInterface() {
     const form = useForm({
         initialValues: {
             execName: '',
@@ -76,50 +87,58 @@ function ManageExecs() {
     };
 
     return (
-        <MantineProvider forceColorScheme="dark">
-            <AuthorizeView>
-                <AdminLayoutV2>
-                    {/*<form onSubmit={form.onSubmit(handleSubmit)}>*/}
-                    {/*    <TextInput*/}
-                    {/*        mb="sm"*/}
-                    {/*        label="Executive Name"*/}
-                    {/*        placeholder="John Doe"*/}
-                    {/*        {...form.getInputProps('execName')}*/}
-                    {/*        required*/}
-                    {/*    />*/}
-                    {/*    <TextInput*/}
-                    {/*        mb="sm"*/}
-                    {/*        label="Executive Role"*/}
-                    {/*        placeholder="Marketing Executive"*/}
-                    {/*        {...form.getInputProps('execRole')}*/}
-                    {/*        required*/}
-                    {/*    />*/}
-                    {/*    <TextInput*/}
-                    {/*        mb="sm"*/}
-                    {/*        label="Executive LinkedIn"*/}
-                    {/*        placeholder="https://www.linkedin.com/in/john-doe/"*/}
-                    {/*        {...form.getInputProps('execLinkedInLink')}*/}
-                    {/*        required*/}
-                    {/*    />*/}
-                    {/*    <TextInput*/}
-                    {/*        mb="sm"*/}
-                    {/*        label="Favourite Celestial Object"*/}
-                    {/*        placeholder="Voyager I"*/}
-                    {/*        {...form.getInputProps('execFavObject')}*/}
-                    {/*        required*/}
-                    {/*    />*/}
-                    {/*    <Button*/}
-                    {/*        type="submit"*/}
-                    {/*        className={classes.control}*/}
-                    {/*    >*/}
-                    {/*        Add Executive*/}
-                    {/*    </Button>*/}
-                    {/*</form>*/}
-                    <ExecInterface></ExecInterface>
-                </AdminLayoutV2>
-            </AuthorizeView>
-        </MantineProvider>
+        <Flex
+            h="calc(88vh)"
+            bg="rgba(0, 0, 0, .3)"
+            gap="xl"
+            justify="space-evenly"
+            align="center"
+            direction="row"
+            wrap="wrap"
+        >
+            <div className={ classes.form }>
+                <form onSubmit={form.onSubmit(handleSubmit)}>
+                    <TextInput
+                        mb="sm"
+                        label="Executive Name"
+                        placeholder="John Doe"
+                        {...form.getInputProps('execName')}
+                        required
+                    />
+                    <TextInput
+                        mb="sm"
+                        label="Executive Role"
+                        placeholder="Marketing Executive"
+                        {...form.getInputProps('execRole')}
+                        required
+                    />
+                    <TextInput
+                        mb="sm"
+                        label="Executive LinkedIn"
+                        placeholder="https://www.linkedin.com/in/john-doe/"
+                        {...form.getInputProps('execLinkedInLink')}
+                        required
+                    />
+                    <TextInput
+                        mb="sm"
+                        label="Favourite Celestial Object"
+                        placeholder="Voyager I"
+                        {...form.getInputProps('execFavObject')}
+                        required
+                    />
+                    <Button
+                        type="submit"
+                        className={classes.control}
+                    >
+                        Add Executive
+                    </Button>
+                </form>
+            </div>
+            <div className={classes.table}>
+                <UsersTable></UsersTable>
+            </div>
+        </Flex>
     );
 }
 
-export default ManageExecs;
+export default ExecInterface;
