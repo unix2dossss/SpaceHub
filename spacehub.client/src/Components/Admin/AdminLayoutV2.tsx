@@ -1,6 +1,5 @@
-import { AppShell, Burger, Group, ScrollArea, Skeleton, Stack, UnstyledButton } from '@mantine/core';
+import { AppShell, Burger, Group, Stack, UnstyledButton } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from '../Layout.module.css';
 import { Link } from 'react-router-dom';
 import LogoutLink from './LogoutLink';
