@@ -21,7 +21,7 @@ function Layout() {
                 <Group h="100%" px="md">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                     <Group justify="space-between" style={{ flex: 1 }}>
-                        <Flex mb='md'><SHLogo></SHLogo></Flex>
+                        <SHLogo></SHLogo>
                         <Group ml="xl" gap={30} visibleFrom="sm">
                             <Link to="/about" className={classes.link}>
                                 <UnstyledButton className={classes.link}>About Us</UnstyledButton>

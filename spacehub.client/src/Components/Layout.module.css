@@ -15,7 +15,9 @@
     border-radius: var(--mantine-radius-sm);
     text-decoration: none;
     color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+    font-family: 'SpacedFont', sans-serif;
     font-size: var(--mantine-font-size-sm);
+    letter-spacing: 2px;
     font-weight: 500;
 
     @mixin hover {

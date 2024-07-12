@@ -1,15 +1,16 @@
-import classes from './SHLogo.module.css';
+import { Image } from '@mantine/core';
+import shaLogoSVG from '../../assets/SHA_Text_Logo.png';
+import { Link } from 'react-router-dom';
+
 
 function SHLogo() {
     return (
-        <div className={classes.logo}>
-            <h3>
-                Space
-            </h3>
-            <h3>
-                Hub
-            </h3>
-        </div>
+            <Link to="/">
+                <Image
+                    src={shaLogoSVG}
+                    height={40}
+                />
+            </Link>  
     );
 }
 
