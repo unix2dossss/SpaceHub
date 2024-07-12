@@ -1,4 +1,4 @@
-import { Title, Text, Button, Grid } from '@mantine/core';
+import { Title, Text, Button, Grid, Flex } from '@mantine/core';
 import classes from './OurStory.module.css';
 import AutoPlayCarousel from './AutoPlayCarousel';
 
@@ -26,7 +26,12 @@ function OurStory() {
                         </Button>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, md: 5 }}>
-                        <AutoPlayCarousel></AutoPlayCarousel>
+                        <Flex
+                            justify="center"
+                            align="center"
+                        >
+                            <AutoPlayCarousel></AutoPlayCarousel>
+                        </Flex>
                     </Grid.Col>
                 </Grid>
             </div>
