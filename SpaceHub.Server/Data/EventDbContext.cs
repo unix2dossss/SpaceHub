@@ -5,7 +5,7 @@ namespace SpaceHub.Server.Data
 {
     public class EventDbContext:DbContext
     {
-        public EventDbContext(DbContextOptions options):base(options) 
+        public EventDbContext(DbContextOptions<EventDbContext> options):base(options) 
         {
 
         }

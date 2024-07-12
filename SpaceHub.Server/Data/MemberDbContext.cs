@@ -5,7 +5,7 @@ namespace SpaceHub.Server.Data
 {
     public class MemberDbContext:DbContext
     {
-        public MemberDbContext(DbContextOptions options):base(options) 
+        public MemberDbContext(DbContextOptions<MemberDbContext> options):base(options) 
         {
 
         }
