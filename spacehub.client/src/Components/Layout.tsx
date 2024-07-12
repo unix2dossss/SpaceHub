@@ -12,10 +12,11 @@ function Layout() {
 
     return (
         <AppShell
-            header={{ height: 60 }}
+            header={{ height: 80 }}
             navbar={{ width: 300, breakpoint: 'sm', collapsed: { desktop: true, mobile: !opened } }}
+            footer={{ height: 60, offset: true}}
         >
-            <AppShell.Header>
+            <AppShell.Header bg="#1A1A1A">
                 <Group h="100%" px="md">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                     <Group justify="space-between" style={{ flex: 1 }}>
@@ -55,11 +56,11 @@ function Layout() {
                 </Stack>  
             </AppShell.Navbar>
 
-            <AppShell.Main>
+            <AppShell.Main bg="#242424">
                 <Outlet/>
             </AppShell.Main>
 
-            <AppShell.Footer p="md"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
+            <AppShell.Footer p="md" bg="#1A1A1A"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
         </AppShell>
     );
 }
