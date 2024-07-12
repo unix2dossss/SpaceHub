@@ -4,6 +4,7 @@ import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from '../Layout.module.css';
 import { Link } from 'react-router-dom';
 import LogoutLink from './LogoutLink';
+import SHLogo from '../SpaceHubLogo/SHLogo';
 
 function AdminLayoutV2({ children }) {
     const [opened, { toggle }] = useDisclosure();
@@ -16,7 +17,7 @@ function AdminLayoutV2({ children }) {
             <AppShell.Header>
                 <Group h="100%" px="md">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                    <MantineLogo size={30} />
+                    <SHLogo></SHLogo>
                 </Group>
             </AppShell.Header>
             <AppShell.Navbar p="md">
