@@ -1,9 +1,9 @@
 import { Container, Title, Text, Button } from '@mantine/core';
-import classes from './HeroImageRight.module.css';
+import classes from './Hero.module.css';
 
-function HeroImageRight() {
+function Hero() {
     return (
-        <div className={classes.heroContainer}>
+        //<div className={classes.heroContainer}>
         <div className={classes.root}>
             <Container size="lg">
                 <div className={classes.inner}>
@@ -39,8 +39,8 @@ function HeroImageRight() {
                 </div>
             </Container>
             </div>
-        </div>
+        //</div>
     );
 }
 
-export default HeroImageRight;
+export default Hero;
