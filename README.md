@@ -8,3 +8,41 @@ SpaceHub is a supportive community for students interested in space, offering di
 
 ## Contributions 🌟
 Feel free to fork this repository, make changes, and submit pull requests to contribute to the development of the website.
+
+### TODO
+#### Home
+- [ ] Title
+- [ ] Button
+- [ ] Background
+- [ ] Image (Right)
+
+#### About Us
+- [ ] Hero. Sub-title. Button Links.
+- [ ] Our Story. Paragraph. Caraousel (style correctly)
+
+#### Events
+- [ ] Title. Lengthen Paragraph. Button Link.
+- [ ] Event Cards. 1) fix margin - currently touching LHS. 2) Fix capitalised eventDescription. 3) Add top-margin to Register button.
+
+#### FAQ
+- [ ] Redesign FAQ page.
+
+#### Join US
+- [ ] Redesign Join Us.
+
+#### Portal
+- [ ] Design Admin Portal.
+
+#### Manage Events
+- [ ] Add submit form button. Implement submit functionality
+- [ ] Figure out a way to allow admins to upload imaeges for event card bg.
+- [ ] Redesign Manage Events page.
+
+#### Manage Members
+- [ ] Design Page. Table with search (Mantine component somewhere). Allow admin to edit 'paid/not paid'
+
+#### Manage Members
+- [ ] Redesign Page. 
+
+#### Misc
+- [ ] Navbar
