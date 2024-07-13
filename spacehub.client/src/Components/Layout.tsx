@@ -1,6 +1,6 @@
 import { AppShell, Burger, Group, Stack, UnstyledButton, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantinex/mantine-logo';
+import SHLogo from './SpaceHubLogo/SHLogo';
 import classes from './Layout.module.css';
 import { Link } from 'react-router-dom';
 import { IconCopyright } from '@tabler/icons-react';
@@ -16,11 +16,11 @@ function Layout() {
             navbar={{ width: 300, breakpoint: 'sm', collapsed: { desktop: true, mobile: !opened } }}
             footer={{ height: 60, offset: true}}
         >
-            <AppShell.Header bg="#1A1A1A">
-                <Group h="100%" px="md">
+            <AppShell.Header bg="#1A1A1A" withBorder={false}>
+                <Group h="100%" px="lg">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                     <Group justify="space-between" style={{ flex: 1 }}>
-                        <MantineLogo size={30} />
+                        <SHLogo></SHLogo>
                         <Group ml="xl" gap={30} visibleFrom="sm">
                             <Link to="/about" className={classes.link}>
                                 <UnstyledButton className={classes.link}>About Us</UnstyledButton>
@@ -53,14 +53,14 @@ function Layout() {
                     <Link to="/membership" className={classes.link}>
                         <UnstyledButton className={classes.link}>Join Us</UnstyledButton>
                     </Link>
-                </Stack>  
+                </Stack>
             </AppShell.Navbar>
 
             <AppShell.Main bg="#242424">
                 <Outlet/>
             </AppShell.Main>
 
-            <AppShell.Footer p="md" bg="#1A1A1A"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
+            <AppShell.Footer className={classes.link} withBorder={false} p="md" bg="#1A1A1A"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
         </AppShell>
     );
 }

@@ -24,9 +24,7 @@ function AutoPlayCarousel() {
 
     return (
         <Carousel
-            mt="48.6px"
             withIndicators
-            height={400}
             plugins={[autoplay.current]}
             onMouseEnter={autoplay.current.stop}
             onMouseLeave={autoplay.current.reset}

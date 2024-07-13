@@ -1,5 +1,4 @@
 .ourStoryWrapper {
-    padding-top: calc(1.5rem* var(--mantine-scale));
     max-width: calc(75rem* var(--mantine-scale));
     margin-left: auto;
     margin-right: auto;

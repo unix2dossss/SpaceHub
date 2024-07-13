@@ -62,7 +62,11 @@ export default defineConfig({
             '^/api/Member': {
                 target: 'https://localhost:7149/',
                 secure: false
-            }
+            },
+            '^/api/Executive': {
+                target: 'https://localhost:7149/',
+                secure: false
+            },
         },
         port: 5173,
         https: {
