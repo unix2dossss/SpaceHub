@@ -17,7 +17,7 @@ function Layout() {
             footer={{ height: 60, offset: true}}
         >
             <AppShell.Header bg="#1A1A1A" withBorder={false}>
-                <Group h="100%" px="md">
+                <Group h="100%" px="lg">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                     <Group justify="space-between" style={{ flex: 1 }}>
                         <SHLogo></SHLogo>
@@ -53,7 +53,7 @@ function Layout() {
                     <Link to="/membership" className={classes.link}>
                         <UnstyledButton className={classes.link}>Join Us</UnstyledButton>
                     </Link>
-                </Stack>  
+                </Stack>
             </AppShell.Navbar>
 
             <AppShell.Main bg="#242424">

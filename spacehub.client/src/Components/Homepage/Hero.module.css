@@ -4,10 +4,10 @@
 
 .root {
     height: calc(100vh - 140px);
-    background-color: #11284b;
+    /*background-color: #11284b;*/
     background-size: cover;
     background-position: center;
-    background-image: linear-gradient(250deg, rgba(130, 201, 30, 0.05) 0%, #000712 70%), url(https://wallpapercave.com/wp/wp9116464.jpg);
+    /*background-image: linear-gradient(250deg, rgba(130, 201, 30, 0.05) 0%, #000712 70%), url(https://wallpapercave.com/wp/wp9116464.jpg);*/
     padding-top: calc(var(--mantine-spacing-xl) * 3);
     padding-bottom: calc(var(--mantine-spacing-xl) * 3);
 }

@@ -10,7 +10,7 @@ function ManageEvents() {
         <MantineProvider forceColorScheme='dark'>
             <AuthorizeView>
                 <AdminLayoutV2>
-                    <SHLogo></SHLogo>
+                    test
                 </AdminLayoutV2>
             </AuthorizeView>
         </MantineProvider>

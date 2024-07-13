@@ -1,4 +1,4 @@
-import { Avatar, Badge, Table, Group, Text, Anchor } from '@mantine/core';
+import { Badge, Table, Group, Text, Anchor } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
 //const data = [

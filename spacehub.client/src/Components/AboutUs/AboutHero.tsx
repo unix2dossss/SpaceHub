@@ -12,26 +12,25 @@ function AboutHero() {
 
             <div className={classes.inner}>
                 <Title className={classes.title}>
-                    Automated AI{' '}
+                    SpaceHub:{' '}
                     <Text component="span" className={classes.highlight} inherit>
-                        code reviews
+                        Your Gateway
                     </Text>{' '}
-                    for any stack
+                     to the Stars
                 </Title>
 
                 <Container p={0} size={600}>
                     <Text size="lg" c="dimmed" className={classes.description}>
-                        Build more reliable software with AI companion. AI is also trained to detect lazy
-                        developers who do nothing and just complain on Twitter.
+                        Explore space through events, speaker sessions, and collaborative learning. Engage with fellow enthusiasts and expand your knowledge of the cosmos.
                     </Text>
                 </Container>
 
                 <div className={classes.controls}>
                     <Button className={classes.control} size="lg" variant="default" color="gray">
-                        Book a demo
+                        Our Events
                     </Button>
                     <Button className={classes.control} size="lg">
-                        Purchase a license
+                        Join Us
                     </Button>
                 </div>
             </div>
