@@ -12,6 +12,7 @@
     <Folder Include="src\Components\Header\" />
     <Folder Include="src\Components\FAQ\" />
     <Folder Include="src\Components\NotFound\" />
+    <Folder Include="src\Components\SpaceHubLogo\" />
     <Folder Include="src\Hooks\" />
     <Folder Include="src\Models\" />
     <Folder Include="src\Contexts\" />
