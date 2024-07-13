@@ -1,6 +1,5 @@
-import { AppShell, Burger, Container, Flex, Group, Stack, UnstyledButton, rem } from '@mantine/core';
+import { AppShell, Burger, Group, Stack, UnstyledButton, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import SHLogo from './SpaceHubLogo/SHLogo';
 import classes from './Layout.module.css';
 import { Link } from 'react-router-dom';
@@ -17,7 +16,7 @@ function Layout() {
             navbar={{ width: 300, breakpoint: 'sm', collapsed: { desktop: true, mobile: !opened } }}
             footer={{ height: 60, offset: true}}
         >
-            <AppShell.Header bg="#1A1A1A">
+            <AppShell.Header bg="#1A1A1A" withBorder={false}>
                 <Group h="100%" px="md">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                     <Group justify="space-between" style={{ flex: 1 }}>
@@ -61,7 +60,7 @@ function Layout() {
                 <Outlet/>
             </AppShell.Main>
 
-            <AppShell.Footer p="md" bg="#1A1A1A"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
+            <AppShell.Footer className={classes.link} withBorder={false} p="md" bg="#1A1A1A"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>
         </AppShell>
     );
 }
