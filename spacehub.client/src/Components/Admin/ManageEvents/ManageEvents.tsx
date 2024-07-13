@@ -15,7 +15,7 @@
 //import { useState } from 'react';
 //import classes from './ManageEvents.module.css';
 //import AuthorizeView from '../AuthorizeView';
-//import AdminLayoutV2 from '../AdminLayoutV2';
+//import AdminLayout from '../AdminLayout';
 //import CardsCarousel from '../../Events/CardsCarousel';
 
 //function ManageEvents() {
@@ -28,7 +28,7 @@
 //    return (
 //        <MantineProvider forceColorScheme='dark'>
 //            <AuthorizeView>
-//                <AdminLayoutV2>
+//                <AdminLayout>
 //                    <Container>
 //                        <SimpleGrid cols={2} spacing="lg">
 //                            <div>
@@ -90,7 +90,7 @@
 //                    </Container>
 //                    <Divider mt="xl"></Divider>
 //                    <CardsCarousel></CardsCarousel>
-//                </AdminLayoutV2>
+//                </AdminLayout>
 //            </AuthorizeView>
 //        </MantineProvider>
 //    );
@@ -116,7 +116,7 @@ import {
 import { useState } from 'react';
 import classes from './ManageEvents.module.css';
 import AuthorizeView from '../AuthorizeView';
-import AdminLayoutV2 from '../AdminLayoutV2';
+import AdminLayout from '../AdminLayout';
 import CardsCarousel from '../../Events/CardsCarousel';
 import { useForm } from '@mantine/form';
 
@@ -173,7 +173,7 @@ function ManageEvents() {
     return (
         <MantineProvider forceColorScheme='dark'>
             <AuthorizeView>
-                <AdminLayoutV2>
+                <AdminLayout>
                     <Container>
                         <SimpleGrid cols={2} spacing="lg">
                             <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -238,7 +238,7 @@ function ManageEvents() {
                     </Container>
                     <Divider mt="xl"></Divider>
                     <CardsCarousel></CardsCarousel>
-                </AdminLayoutV2>
+                </AdminLayout>
             </AuthorizeView>
         </MantineProvider>
     );
