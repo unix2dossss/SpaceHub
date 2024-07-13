@@ -10,8 +10,8 @@ const Events = () => {
             {/*<FeaturesAsymmetrical></FeaturesAsymmetrical>*/}
             <EventsIntroSection></EventsIntroSection>
             <Divider size="md" my="lg" label="Events" labelPosition="center" />
-            {/*<CardsCarousel></CardsCarousel>*/}
-            <EventsCarousel></EventsCarousel>
+            <CardsCarousel></CardsCarousel>
+            {/*<EventsCarousel></EventsCarousel>*/}
         </div>
     );
 }
