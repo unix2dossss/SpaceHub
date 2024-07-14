@@ -88,8 +88,7 @@
 //}
 
 import { Anchor, Group, ActionIcon, rem } from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram, IconBrandDiscord, IconBrandLinktree } from '@tabler/icons-react';
-import { MantineLogo } from '@mantinex/mantine-logo';
+import { IconBrandInstagram, IconBrandDiscord, IconBrandLinktree } from '@tabler/icons-react';
 import classes from './ShFooter.module.css';
 
 const links = [
