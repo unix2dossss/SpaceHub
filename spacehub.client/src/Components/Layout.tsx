@@ -16,6 +16,7 @@ function Layout() {
             header={{ height: 80 }}
             navbar={{ width: 300, breakpoint: 'sm', collapsed: { desktop: true, mobile: !opened } }}
             // footer={{ height: 60, offset: true}}
+            footer={{ height: 60, offset: true }}
         >
             <AppShell.Header bg="#1A1A1A" withBorder={false}>
                 <Group h="100%" px="lg">
@@ -59,9 +60,9 @@ function Layout() {
 
             <AppShell.Main bg="#242424">
                 <Outlet/>
-                <ShFooter></ShFooter>
             </AppShell.Main>
-
+            
+            <AppShell.Footer><ShFooter/></AppShell.Footer>
             {/*<AppShell.Footer className={classes.link} withBorder={false} p="md" bg="#1A1A1A"><IconCopyright style={{ width: rem(13), height: rem(13) }} stroke={2} /> 2024 Space Hub Auckland. All rights reserved.</AppShell.Footer>*/}
         </AppShell>
     );
