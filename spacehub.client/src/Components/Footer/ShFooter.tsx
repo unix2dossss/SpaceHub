@@ -88,7 +88,7 @@
 //}
 
 import { Anchor, Group, ActionIcon, rem } from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
+import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram, IconBrandDiscord, IconBrandLinktree } from '@tabler/icons-react';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './ShFooter.module.css';
 
@@ -123,13 +123,13 @@ function ShFooter() {
 
                 <Group gap="xs" justify="flex-end" wrap="nowrap">
                     <ActionIcon size="lg" variant="default" radius="xl">
-                        <IconBrandTwitter style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-                    </ActionIcon>
-                    <ActionIcon size="lg" variant="default" radius="xl">
-                        <IconBrandYoutube style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-                    </ActionIcon>
-                    <ActionIcon size="lg" variant="default" radius="xl">
                         <IconBrandInstagram style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+                    </ActionIcon>
+                    <ActionIcon size="lg" variant="default" radius="xl">
+                        <IconBrandDiscord style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+                    </ActionIcon>
+                    <ActionIcon size="lg" variant="default" radius="xl">
+                        <IconBrandLinktree style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
                     </ActionIcon>
                 </Group>
             </div>
