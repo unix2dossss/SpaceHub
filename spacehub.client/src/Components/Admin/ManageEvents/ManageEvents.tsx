@@ -111,7 +111,10 @@ import {
     Container,
     SimpleGrid,
     MantineProvider,
-    Divider
+    Divider,
+    Anchor,
+    Box,
+    Autocomplete
 } from '@mantine/core';
 import { useState } from 'react';
 import classes from './ManageEvents.module.css';
@@ -128,7 +131,7 @@ function ManageEvents() {
             eventCatergory: '',
             eventDescription: '',
             eventLink: '',
-            eventCardBG: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+            eventCardBG: '',
             eventTime: '2024-11-30T19:00:00Z',
             eventPast: true
         },
@@ -168,43 +171,40 @@ function ManageEvents() {
         }
     };
 
-    const [image, setImage] = useState<File | null>(null);
-
     return (
         <MantineProvider forceColorScheme='dark'>
             <AuthorizeView>
                 <AdminLayout>
-                    <Container>
-                        <SimpleGrid cols={2} spacing="lg">
+                    <Container mt="xl">
+                        <SimpleGrid cols={2} spacing="xl">
                             <form onSubmit={form.onSubmit(handleSubmit)}>
-                                <NativeSelect
+                                <Autocomplete
                                     label="Event Category"
-                                    data={['Workshop', 'Networking', 'Social', 'Lecture', 'Field Trip']}
+                                    placeholder="Select an event category"
+                                    data={['Networking', 'Workshop', 'Seminar', 'Star Gazing', 'Academia', 'Community Outreach', 'Social']}
                                     {...form.getInputProps('eventCatergory')}
                                 />
 
                                 <TextInput
                                     label="Event Name"
-                                    placeholder="Enter event name"
+                                    placeholder="Name your event"
                                     {...form.getInputProps('eventName')}
                                 />
 
                                 <Textarea
                                     label="Event Description"
-                                    placeholder="Enter event description"
+                                    placeholder="Describe your event"
                                     {...form.getInputProps('eventDescription')}
                                 />
-
                                 <TextInput
-                                    label="Event Link"
-                                    placeholder="Enter event link"
-                                    {...form.getInputProps('eventLink')}
+                                    label="Card Background Link"
+                                    placeholder="Provide a URL for the card background"
+                                    {...form.getInputProps('eventCardBG')}
                                 />
-
-                                <FileInput
-                                    label="Upload Card Background"
-                                    placeholder="Upload image"
-                                    onChange={setImage}
+                                <TextInput
+                                    label="Event Registration Link"
+                                    placeholder="Enter the registration link"
+                                    {...form.getInputProps('eventLink')}
                                 />
                                 <Button
                                     mt="md"
@@ -214,29 +214,30 @@ function ManageEvents() {
                                     Create Event
                                 </Button>
                             </form>
+                                <Paper shadow="md" radius="md" p="xl" className={classes.cardPreview}
+                                   // {/*style={{ backgroundImage: `url(${form.values.eventCardBG})` }}>*/}
+                                style={{ backgroundImage: `url(${form.values.eventCardBG || 'https://i.pinimg.com/736x/9c/8d/04/9c8d042a5deb241e92059c894a0c211e.jpg'})` }}>
 
-                            <Paper shadow="md" radius="lg" p="md" withBorder className={classes.cardPreview}
-                                style={{ backgroundImage: `url(${form.values.eventCardBG})` }}>
-                                <div>
-                                    <Text className={classes.category} size="xs">
-                                        {form.values.eventCatergory || 'Event Category'}
-                                    </Text>
-                                    <Title order={3} className={classes.title}>
-                                        {form.values.eventName || 'Event Name'}
-                                    </Title>
-                                    <Text className={classes.description}>
-                                        {form.values.eventDescription || 'Event Description'}
-                                    </Text>
-                                    {form.values.eventLink && (
-                                        <Button mt="md" component="a" href={form.values.eventLink} className={classes.link}>
-                                            RSVP
+                                    <div>
+                                        <Text fw={500} className={classes.category} size="xs">
+                                            {form.values.eventCatergory || 'Event Category'}
+                                        </Text>
+                                        <Title fw={700} order={3} className={classes.title}>
+                                            {form.values.eventName || 'Event Name'}
+                                        </Title>
+                                        <Text fw={400} mt="sm" className={classes.description}>
+                                            {form.values.eventDescription || 'Event Description'}
+                                        </Text>
+                                    </div>
+                                    <Anchor href={form.values.eventLink}>
+                                        <Button variant="white" color="dark" className={classes.rsvpButton}>
+                                            Register
                                         </Button>
-                                    )}
-                                </div>
-                            </Paper>
+                                    </Anchor>
+                                </Paper>
                         </SimpleGrid>
                     </Container>
-                    <Divider mt="xl"></Divider>
+                    <Divider mt="xl" mb="xl"></Divider>
                     <CardsCarousel></CardsCarousel>
                 </AdminLayout>
             </AuthorizeView>

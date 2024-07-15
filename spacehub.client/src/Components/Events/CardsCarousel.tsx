@@ -3,7 +3,7 @@ import '@mantine/core/styles.css';
 
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
-import { Paper, Text, Title, Button, useMantineTheme, Anchor, Badge, Group } from '@mantine/core';
+import { Paper, Text, Title, Button, useMantineTheme, Anchor } from '@mantine/core';
 import classes from './CardsCarousel.module.css';
 import { useEffect, useState } from 'react';
 
@@ -89,7 +89,7 @@ function CardsCarousel() {
                     align="start"
                     slidesToScroll={mobile ? 1 : 2}
                     mb="lg"
-                    mx="md"
+                    mx="xl"
                 >
                     {slides}
                 </Carousel>
