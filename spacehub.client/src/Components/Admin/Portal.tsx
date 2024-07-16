@@ -1,13 +1,13 @@
 import AuthorizeView from "./AuthorizeView.tsx";
 import Home from "../Homepage/Home.tsx";
-import AdminLayoutV2 from "./AdminLayoutV2.tsx";
+import AdminLayout from "./AdminLayout.tsx";
 
 function Portal() {
     return (
         <AuthorizeView>
-            <AdminLayoutV2>
+            <AdminLayout>
                 <Home />
-            </AdminLayoutV2>
+            </AdminLayout>
         </AuthorizeView>
     );
 }

@@ -1,20 +1,12 @@
 import {
-    Text,
-    Title,
-    SimpleGrid,
     TextInput,
-    Textarea,
     Button,
-    Group,
-    ActionIcon,
     Flex,
 } from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import classes from './ExecInterface.module.css';
 import UsersTable from '../../AboutUs/UsersTable';
 import { useForm } from '@mantine/form';
 
-const social = [IconBrandTwitter, IconBrandYoutube, IconBrandInstagram];
 
 function ExecInterface() {
     const form = useForm({

@@ -23,3 +23,8 @@
     font-weight: 700;
     text-transform: uppercase;
 }
+
+.description {
+    color: var(--mantine-color-white);
+    font-weight: 500;
+}

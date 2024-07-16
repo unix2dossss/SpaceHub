@@ -1,5 +1,5 @@
 import AuthorizeView from '../AuthorizeView.tsx';
-import AdminLayoutV2 from "../AdminLayoutV2.tsx";
+import AdminLayout from "../AdminLayout.tsx";
 import { MantineProvider } from '@mantine/core';
 import classes from './ManageMembers.module.css';
 import SHLogo from '../../SpaceHubLogo/SHLogo.tsx';
@@ -9,9 +9,9 @@ function ManageEvents() {
     return (
         <MantineProvider forceColorScheme='dark'>
             <AuthorizeView>
-                <AdminLayoutV2>
+                <AdminLayout>
                     test
-                </AdminLayoutV2>
+                </AdminLayout>
             </AuthorizeView>
         </MantineProvider>
     );
