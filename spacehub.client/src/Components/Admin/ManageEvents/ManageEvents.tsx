@@ -24,6 +24,7 @@ import CardsCarousel from '../../Events/CardsCarousel';
 import { useForm } from '@mantine/form';
 import { IconClock } from '@tabler/icons-react';
 import { useRef } from 'react';
+import dayjs from 'dayjs';
 
 function ManageEvents() {
 
@@ -48,17 +49,32 @@ function ManageEvents() {
 
     const handleSubmit = async (values) => {
 
-        //console.log(values);
+        //const dateTimeString = values.eventDateTime;
+        //const dateTimeObject = new Date(dateTimeString);
+        //const endTimeString = values.eventEndTime;
+        //const endTimeObject = new Date(endTimeString);
+
+        //const formattedValues = {
+        //    ...values,
+        //    eventDateTime: values.eventDateTime ? dateTimeObject.toISOString() : null,
+        //    eventEndTime: values.eventEndTime ? endTimeObject.toISOString() : null,
+        //};
 
         const dateTimeString = values.eventDateTime;
         const dateTimeObject = new Date(dateTimeString);
-        const endTimeString = values.eventEndTime;
-        const endTimeObject = new Date(endTimeString);
+
+        // If eventEndTime is not null, combine it with the date part of eventDateTime
+        let endTimeObject = null;
+        if (values.eventEndTime) {
+            const [hours, minutes] = values.eventEndTime.split(':');
+            endTimeObject = new Date(dateTimeObject); // Use date part from eventDateTime
+            endTimeObject.setHours(hours, minutes);  // Set the time part from eventEndTime
+        }
 
         const formattedValues = {
             ...values,
             eventDateTime: values.eventDateTime ? dateTimeObject.toISOString() : null,
-            eventEndTime: values.eventEndTime ? endTimeObject.toISOString() : null,
+            eventEndTime: endTimeObject ? endTimeObject.toISOString() : null,
         };
 
         console.log(formattedValues);
@@ -94,6 +110,13 @@ function ManageEvents() {
             <IconClock style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
         </ActionIcon>
     );
+
+    const combineDateTime = (dateTime, time) => {
+        const dateTimeObject = new Date(dateTime);
+        const [hours, minutes] = time.split(':');
+        dateTimeObject.setHours(hours, minutes);
+        return dateTimeObject;
+    };
 
     return (
         <MantineProvider forceColorScheme='dark'>
@@ -136,8 +159,8 @@ function ManageEvents() {
                                     {...form.getInputProps('eventLink')}
                                 />  
                                     <Group>
-                                    <DateTimePicker mb="xs" valueFormat="DD MMM YYYY hh:mm A" dropdownType="modal" clearable label="Event Date and Time" placeholder="Pick date and time" {...form.getInputProps('eventDateTime')}/>
-                                    <TimeInput mb="xs" label="Event End Time" ref={ref} rightSection={pickerControl} {...form.getInputProps('eventEndTime')} />
+                                        <DateTimePicker mb="xs" valueFormat="DD MMM YYYY hh:mm A" dropdownType="modal" clearable label="Event Date and Time" placeholder="Pick date and time" {...form.getInputProps('eventDateTime')}/>
+                                        <TimeInput mb="xs" label="Event End Time" ref={ref} rightSection={pickerControl} {...form.getInputProps('eventEndTime')} />
                                     </Group>
                                     <Button
                                         mt="md"
@@ -164,10 +187,13 @@ function ManageEvents() {
                                         </Text>
                                     </div>
                                     <div>
-                                        <Text fw={500} mb="sm" className={classes.category} size="xs">
-                                            {form.values.eventStart || 'DD MMM YYYY hh:mm A - hh:mm A'}
-                                        </Text>
-                                        <Anchor href={form.values.eventStart}>
+                                    <Text fw={500} mb="sm" className={classes.category} size="xs">
+                                        {`${dayjs(form.values.eventDateTime || new Date()).format("DD MMM YYYY hh:mm A")} - 
+                                                ${form.values.eventEndTime
+                                                ? dayjs(combineDateTime(form.values.eventDateTime, form.values.eventEndTime)).format("hh:mm A")
+                                                : dayjs(new Date()).format("hh:mm A")}`}
+                                    </Text>
+                                        <Anchor href={form.values.eventLink}>
                                             <Button variant="white" color="dark" className={classes.rsvpButton}>
                                                 Register
                                             </Button>
