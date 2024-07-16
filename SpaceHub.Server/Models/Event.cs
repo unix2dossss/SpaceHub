@@ -8,6 +8,9 @@ namespace SpaceHub.Server.Models
     public class Event
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int EventId { get; set; }  // Auto-incrementing primary key
+
         [Required]
         public string EventName { get; set; }
 
@@ -24,9 +27,9 @@ namespace SpaceHub.Server.Models
         public string EventCardBG { get; set; }
 
         [Required]
-        public string EventTime { get; set; }
+        public DateTime EventDateTime { get; set; }
 
         [Required]
-        public bool EventPast { get; set; } = false;
+        public DateTime EventEndTime { get; set; }
     }
 }

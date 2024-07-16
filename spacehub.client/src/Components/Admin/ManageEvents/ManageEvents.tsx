@@ -1,109 +1,6 @@
-//import {
-//    TextInput,
-//    Textarea,
-//    NativeSelect,
-//    FileInput,
-//    Paper,
-//    Title,
-//    Text,
-//    Button,
-//    Container,
-//    SimpleGrid,
-//    MantineProvider,
-//    Divider
-//} from '@mantine/core';
-//import { useState } from 'react';
-//import classes from './ManageEvents.module.css';
-//import AuthorizeView from '../AuthorizeView';
-//import AdminLayout from '../AdminLayout';
-//import CardsCarousel from '../../Events/CardsCarousel';
-
-//function ManageEvents() {
-//    const [eventCategory, setEventCategory] = useState('');
-//    const [eventName, setEventName] = useState('');
-//    const [eventDescription, setEventDescription] = useState('');
-//    const [eventLink, setEventLink] = useState('');
-//    const [image, setImage] = useState<File | null>(null);
-
-//    return (
-//        <MantineProvider forceColorScheme='dark'>
-//            <AuthorizeView>
-//                <AdminLayout>
-//                    <Container>
-//                        <SimpleGrid cols={2} spacing="lg">
-//                            <div>
-//                                <NativeSelect
-//                                    label="Event Category"
-//                                    data={['Workshop', 'Networking', 'Social', 'Lecture', 'Field Trip']}
-//                                    value={eventCategory}
-//                                    onChange={(event) => setEventCategory(event.currentTarget.value)}
-//                                />
-
-//                                <TextInput
-//                                    label="Event Name"
-//                                    placeholder="Enter event name"
-//                                    value={eventName}
-//                                    onChange={(event) => setEventName(event.currentTarget.value)}
-//                                />
-
-//                                <Textarea
-//                                    label="Event Description"
-//                                    placeholder="Enter event description"
-//                                    value={eventDescription}
-//                                    onChange={(event) => setEventDescription(event.currentTarget.value)}
-//                                />
-
-//                                <TextInput
-//                                    label="Event Link"
-//                                    placeholder="Enter event link"
-//                                    value={eventLink}
-//                                    onChange={(event) => setEventLink(event.currentTarget.value)}
-//                                />
-
-//                                <FileInput
-//                                    label="Upload Card Background"
-//                                    placeholder="Upload image"
-//                                    onChange={setImage}
-//                                />
-//                            </div>
-
-//                            <Paper shadow="md" radius="lg" p="md" withBorder className={classes.cardPreview}
-//                                style={{ backgroundImage: image ? `url(${URL.createObjectURL(image)})` : 'none' }}>
-//                                <div>
-//                                    <Text className={classes.category} size="xs">
-//                                        {eventCategory || 'Event Category'}
-//                                    </Text>
-//                                    <Title order={3} className={classes.title}>
-//                                        {eventName || 'Event Name'}
-//                                    </Title>
-//                                    <Text className={classes.description}>
-//                                        {eventDescription || 'Event Description'}
-//                                    </Text>
-//                                    {eventLink && (
-//                                        <Button component="a" href={eventLink} className={classes.link}>
-//                                            Event Link
-//                                        </Button>
-//                                    )}
-//                                </div>
-//                            </Paper>
-//                        </SimpleGrid>
-//                    </Container>
-//                    <Divider mt="xl"></Divider>
-//                    <CardsCarousel></CardsCarousel>
-//                </AdminLayout>
-//            </AuthorizeView>
-//        </MantineProvider>
-//    );
-//};
-
-//export default ManageEvents;
-
-
 import {
     TextInput,
     Textarea,
-    NativeSelect,
-    FileInput,
     Paper,
     Title,
     Text,
@@ -113,15 +10,20 @@ import {
     MantineProvider,
     Divider,
     Anchor,
-    Box,
-    Autocomplete
+    Autocomplete,
+    Group,
+    ActionIcon,
+    rem
 } from '@mantine/core';
-import { useState } from 'react';
+import { DateTimePicker, TimeInput } from '@mantine/dates';
+import '@mantine/dates/styles.css';
 import classes from './ManageEvents.module.css';
 import AuthorizeView from '../AuthorizeView';
 import AdminLayout from '../AdminLayout';
 import CardsCarousel from '../../Events/CardsCarousel';
 import { useForm } from '@mantine/form';
+import { IconClock } from '@tabler/icons-react';
+import { useRef } from 'react';
 
 function ManageEvents() {
 
@@ -132,8 +34,8 @@ function ManageEvents() {
             eventDescription: '',
             eventLink: '',
             eventCardBG: '',
-            eventTime: '2024-11-30T19:00:00Z',
-            eventPast: true
+            eventDateTime: null,
+            eventEndTime: null,
         },
         // Add any necessary validations here
         // validate: {
@@ -145,7 +47,21 @@ function ManageEvents() {
     });
 
     const handleSubmit = async (values) => {
-        console.log(values);
+
+        //console.log(values);
+
+        const dateTimeString = values.eventDateTime;
+        const dateTimeObject = new Date(dateTimeString);
+        const endTimeString = values.eventEndTime;
+        const endTimeObject = new Date(endTimeString);
+
+        const formattedValues = {
+            ...values,
+            eventDateTime: values.eventDateTime ? dateTimeObject.toISOString() : null,
+            eventEndTime: values.eventEndTime ? endTimeObject.toISOString() : null,
+        };
+
+        console.log(formattedValues);
 
         try {
             const response = await fetch('/api/Event', {
@@ -153,7 +69,7 @@ function ManageEvents() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(values),
+                body: JSON.stringify(formattedValues),
             });
 
             const responseBody = await response.json();
@@ -171,6 +87,14 @@ function ManageEvents() {
         }
     };
 
+    const ref = useRef<HTMLInputElement>(null);
+
+    const pickerControl = (
+        <ActionIcon variant="subtle" color="gray" onClick={() => ref.current?.showPicker()}>
+            <IconClock style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+        </ActionIcon>
+    );
+
     return (
         <MantineProvider forceColorScheme='dark'>
             <AuthorizeView>
@@ -180,6 +104,7 @@ function ManageEvents() {
                             <form onSubmit={form.onSubmit(handleSubmit)}>
                                 <Autocomplete
                                     label="Event Category"
+                                    mb="xs"
                                     placeholder="Select an event category"
                                     data={['Networking', 'Workshop', 'Seminar', 'Star Gazing', 'Academia', 'Community Outreach', 'Social']}
                                     {...form.getInputProps('eventCatergory')}
@@ -187,32 +112,41 @@ function ManageEvents() {
 
                                 <TextInput
                                     label="Event Name"
+                                    mb="xs"
                                     placeholder="Name your event"
                                     {...form.getInputProps('eventName')}
                                 />
 
                                 <Textarea
                                     label="Event Description"
+                                    mb="xs"
                                     placeholder="Describe your event"
                                     {...form.getInputProps('eventDescription')}
                                 />
                                 <TextInput
                                     label="Card Background Link"
+                                    mb="xs"
                                     placeholder="Provide a URL for the card background"
                                     {...form.getInputProps('eventCardBG')}
                                 />
                                 <TextInput
                                     label="Event Registration Link"
+                                    mb="xs"
                                     placeholder="Enter the registration link"
                                     {...form.getInputProps('eventLink')}
-                                />
-                                <Button
-                                    mt="md"
-                                    type="submit"
-                                    className={classes.control}
-                                >
-                                    Create Event
-                                </Button>
+                                />  
+                                    <Group>
+                                    <DateTimePicker mb="xs" valueFormat="DD MMM YYYY hh:mm A" dropdownType="modal" clearable label="Event Date and Time" placeholder="Pick date and time" {...form.getInputProps('eventDateTime')}/>
+                                    <TimeInput mb="xs" label="Event End Time" ref={ref} rightSection={pickerControl} {...form.getInputProps('eventEndTime')} />
+                                    </Group>
+                                    <Button
+                                        mt="md"
+                                        type="submit"
+                                        className={classes.control}
+                                    >
+                                        Create Event
+                                    </Button>
+                                
                             </form>
                                 <Paper shadow="md" radius="md" p="xl" className={classes.cardPreview}
                                    // {/*style={{ backgroundImage: `url(${form.values.eventCardBG})` }}>*/}
@@ -229,11 +163,16 @@ function ManageEvents() {
                                             {form.values.eventDescription || 'Event Description'}
                                         </Text>
                                     </div>
-                                    <Anchor href={form.values.eventLink}>
-                                        <Button variant="white" color="dark" className={classes.rsvpButton}>
-                                            Register
-                                        </Button>
-                                    </Anchor>
+                                    <div>
+                                        <Text fw={500} mb="sm" className={classes.category} size="xs">
+                                            {form.values.eventStart || 'DD MMM YYYY hh:mm A - hh:mm A'}
+                                        </Text>
+                                        <Anchor href={form.values.eventStart}>
+                                            <Button variant="white" color="dark" className={classes.rsvpButton}>
+                                                Register
+                                            </Button>
+                                        </Anchor>
+                                    </div>
                                 </Paper>
                         </SimpleGrid>
                     </Container>
