@@ -35,8 +35,8 @@ function ManageEvents() {
             eventDescription: '',
             eventLink: '',
             eventCardBG: '',
-            eventDateTime: null,
-            eventEndTime: null,
+            eventDateTime: '',
+            eventEndTime: '',
         },
         // Add any necessary validations here
         // validate: {
