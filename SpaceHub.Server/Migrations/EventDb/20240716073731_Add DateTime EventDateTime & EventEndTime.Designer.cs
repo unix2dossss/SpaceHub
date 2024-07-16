@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpaceHub.Server.Data;
 
@@ -11,9 +12,11 @@ using SpaceHub.Server.Data;
 namespace SpaceHub.Server.Migrations.EventDb
 {
     [DbContext(typeof(EventDbContext))]
-    partial class EventDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240716073731_Add DateTime EventDateTime & EventEndTime")]
+    partial class AddDateTimeEventDateTimeEventEndTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +27,8 @@ namespace SpaceHub.Server.Migrations.EventDb
 
             modelBuilder.Entity("SpaceHub.Server.Models.Event", b =>
                 {
-                    b.Property<int>("EventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
+                    b.Property<string>("EventName")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("EventCardBG")
                         .IsRequired()
@@ -52,11 +52,7 @@ namespace SpaceHub.Server.Migrations.EventDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EventName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EventId");
+                    b.HasKey("EventName");
 
                     b.ToTable("Events");
                 });
