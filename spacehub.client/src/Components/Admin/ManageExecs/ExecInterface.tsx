@@ -81,8 +81,8 @@ function ExecInterface() {
 
     return (
         <Flex
+            m="xl"
             h="calc(88vh)"
-            bg="rgba(0, 0, 0, .3)"
             gap="xl"
             justify="space-evenly"
             align="center"
@@ -113,7 +113,7 @@ function ExecInterface() {
                         required
                     />
                     <TextInput
-                        mb="sm"
+                        mb="md"
                         label="Favourite Celestial Object"
                         placeholder="Voyager I"
                         {...form.getInputProps('execFavObject')}

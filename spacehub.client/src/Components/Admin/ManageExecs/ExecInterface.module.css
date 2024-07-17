@@ -25,11 +25,11 @@
 }
 
 .form {
-    flex-grow: 1;
+    align-self: stretch;
 }
 
 .table {
-    flex-shrink: 5;
+    align-self: stretch;
 }
 
 .social {
