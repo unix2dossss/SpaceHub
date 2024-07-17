@@ -8,6 +8,9 @@ namespace SpaceHub.Server.Models
     public class Executive
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ExecId { get; set; }  // Auto-incrementing primary key
+
         [Required]
         [StringLength(50, ErrorMessage = "Executive Name cannot be longer than 50 characters.")]
         public string ExecName { get; set; }
