@@ -3,6 +3,7 @@ import AdminLayout from "../AdminLayout.tsx";
 import { MantineProvider } from '@mantine/core';
 import classes from './ManageMembers.module.css';
 import SHLogo from '../../SpaceHubLogo/SHLogo.tsx';
+import MembersTable from './MembersTable.tsx';
 
 
 function ManageEvents() {
@@ -10,7 +11,7 @@ function ManageEvents() {
         <MantineProvider forceColorScheme='dark'>
             <AuthorizeView>
                 <AdminLayout>
-                    test
+                    <MembersTable/>
                 </AdminLayout>
             </AuthorizeView>
         </MantineProvider>

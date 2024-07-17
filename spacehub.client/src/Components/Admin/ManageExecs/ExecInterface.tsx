@@ -6,6 +6,7 @@ import {
 import classes from './ExecInterface.module.css';
 import UsersTable from '../../AboutUs/UsersTable';
 import { useForm } from '@mantine/form';
+import MembersTable from '../ManageMembers/MembersTable';
 
 
 function ExecInterface() {
@@ -85,7 +86,7 @@ function ExecInterface() {
             gap="xl"
             justify="space-evenly"
             align="center"
-            direction="row"
+            direction="column"
             wrap="wrap"
         >
             <div className={ classes.form }>
@@ -127,7 +128,7 @@ function ExecInterface() {
                 </form>
             </div>
             <div className={classes.table}>
-                <UsersTable></UsersTable>
+                <MembersTable />
             </div>
         </Flex>
     );
