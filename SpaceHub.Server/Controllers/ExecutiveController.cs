@@ -30,7 +30,7 @@ namespace SpaceHub.Server.Controllers
 
         // GET: api/Executive/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Executive>> GetExecutive(string id)
+        public async Task<ActionResult<Executive>> GetExecutive(int id)
         {
             var executive = await _context.Executives.FindAsync(id);
 
@@ -45,9 +45,9 @@ namespace SpaceHub.Server.Controllers
         // PUT: api/Executive/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutExecutive(string id, Executive executive)
+        public async Task<IActionResult> PutExecutive(int id, Executive executive)
         {
-            if (id != executive.ExecName)
+            if (id != executive.ExecId)
             {
                 return BadRequest();
             }
@@ -79,28 +79,14 @@ namespace SpaceHub.Server.Controllers
         public async Task<ActionResult<Executive>> PostExecutive(Executive executive)
         {
             _context.Executives.Add(executive);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (ExecutiveExists(executive.ExecName))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetExecutive", new { id = executive.ExecName }, executive);
+            return CreatedAtAction("GetExecutive", new { id = executive.ExecId }, executive);
         }
 
         // DELETE: api/Executive/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteExecutive(string id)
+        public async Task<IActionResult> DeleteExecutive(int id)
         {
             var executive = await _context.Executives.FindAsync(id);
             if (executive == null)
@@ -114,9 +100,9 @@ namespace SpaceHub.Server.Controllers
             return NoContent();
         }
 
-        private bool ExecutiveExists(string id)
+        private bool ExecutiveExists(int id)
         {
-            return _context.Executives.Any(e => e.ExecName == id);
+            return _context.Executives.Any(e => e.ExecId == id);
         }
     }
 }

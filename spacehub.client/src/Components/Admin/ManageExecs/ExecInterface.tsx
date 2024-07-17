@@ -1,15 +1,16 @@
+import { useState } from 'react';
 import {
     TextInput,
     Button,
     Flex,
 } from '@mantine/core';
 import classes from './ExecInterface.module.css';
-import UsersTable from '../../AboutUs/UsersTable';
 import { useForm } from '@mantine/form';
 import MembersTable from '../ManageMembers/MembersTable';
 
-
 function ExecInterface() {
+    const [refreshKey, setRefreshKey] = useState(0); // State variable to track changes
+
     const form = useForm({
         initialValues: {
             execName: '',
@@ -69,6 +70,7 @@ function ExecInterface() {
             }
 
             console.log('Form submitted successfully:', responseBody);
+            setRefreshKey((oldKey) => oldKey + 1); // Trigger a rerender of MembersTable
 
             // You can also reset the form or show a success message here
         } catch (error) {
@@ -89,7 +91,7 @@ function ExecInterface() {
             direction="column"
             wrap="wrap"
         >
-            <div className={ classes.form }>
+            <div className={classes.form}>
                 <form onSubmit={form.onSubmit(handleSubmit)}>
                     <TextInput
                         mb="sm"
@@ -128,7 +130,7 @@ function ExecInterface() {
                 </form>
             </div>
             <div className={classes.table}>
-                <MembersTable />
+                <MembersTable key={refreshKey} />
             </div>
         </Flex>
     );

@@ -9,8 +9,9 @@ import {
     TextInput,
     rem,
     Badge,
+    ActionIcon,
 } from '@mantine/core';
-import { IconSelector, IconChevronDown, IconChevronUp, IconSearch } from '@tabler/icons-react';
+import { IconSelector, IconChevronDown, IconChevronUp, IconSearch, IconPencil, IconTrash } from '@tabler/icons-react';
 import classes from './MembersTable.module.css'; // Ensure you have the CSS file
 
 const jobColors = {
@@ -20,10 +21,13 @@ const jobColors = {
 };
 
 interface Executive {
+    execId: number;
     execName: string;
     execRole: string;
     execLinkedInLink: string;
     execFavObject: string;
+    // Add an ID field if available from your API
+    id: string; // Example assuming ID is a string
 }
 
 interface ThProps {
@@ -118,11 +122,35 @@ function MembersTable() {
         setSortedData(sortData(executives, { sortBy, reversed: reverseSortDirection, search: value }));
     };
 
+    const deleteExecutive = async (id: number) => {
+        console.log(id);
+        try {
+            const response = await fetch(`/api/Executive/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Update executives state to reflect deletion
+            const updatedExecutives = executives.filter((exec) => exec.execId !== id);
+            setExecutives(updatedExecutives);
+            setSortedData(sortData(updatedExecutives, { sortBy, reversed: reverseSortDirection, search }));
+
+            console.log('Executive deleted successfully');
+        } catch (error) {
+            console.error('There was a problem with the delete operation:', error);
+        }
+    };
+
     const rows = sortedData.map((item) => (
         <Table.Tr key={item.execName}>
             <Table.Td>
                 <Group gap="sm">
-                    {/*<Avatar size={30} src={item.avatar} radius={30} />*/}
                     <Text fz="sm" fw={500}>
                         {item.execName}
                     </Text>
@@ -139,6 +167,20 @@ function MembersTable() {
             <Table.Td>
                 <Text fz="sm">{item.execFavObject}</Text>
             </Table.Td>
+            <Table.Td>
+                <Group gap={0} justify="flex-end">
+                    <ActionIcon variant="subtle" color="gray">
+                        <IconPencil style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+                    </ActionIcon>
+                    <ActionIcon
+                        variant="subtle"
+                        color="red"
+                        onClick={() => deleteExecutive(item.execId)} // Pass the ID to delete function
+                    >
+                        <IconTrash style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+                    </ActionIcon>
+                </Group>
+            </Table.Td>
         </Table.Tr>
     ));
 
@@ -151,7 +193,7 @@ function MembersTable() {
                 value={search}
                 onChange={handleSearchChange}
             />
-            <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} layout="fixed">
+            <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} layout="fixed" style={{ width: 'auto' }}>
                 <Table.Tbody>
                     <Table.Tr>
                         <Th

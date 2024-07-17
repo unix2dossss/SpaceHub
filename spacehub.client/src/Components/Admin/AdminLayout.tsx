@@ -11,7 +11,7 @@ function AdminLayout({ children }) {
     return (
         <AppShell
             header={{ height: 80 }}
-            navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
+            navbar={{ width: 235, breakpoint: 'sm', collapsed: { mobile: !opened } }}
         >
             <AppShell.Header bg="#1A1A1A">
                 <Group h="100%" px="lg">
