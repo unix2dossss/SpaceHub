@@ -12,21 +12,22 @@ import {
     ActionIcon,
 } from '@mantine/core';
 import { IconSelector, IconChevronDown, IconChevronUp, IconSearch, IconPencil, IconTrash } from '@tabler/icons-react';
-import classes from './MembersTable.module.css'; // Ensure you have the CSS file
+import classes from './ExecTable.module.css'; // Ensure you have the CSS file
 
-interface Student {
-    studentID: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    pronouns: string;
-    upi: string;
-    study: string[];
-    major: string;
-    semesterPlan: string;
-    payOffline: boolean;
-    paid: boolean;
-    studySerialized: string;
+const jobColors = {
+    engineer: 'blue',
+    manager: 'cyan',
+    designer: 'pink',
+};
+
+interface Executive {
+    execId: number;
+    execName: string;
+    execRole: string;
+    execLinkedInLink: string;
+    execFavObject: string;
+    // Add an ID field if available from your API
+    id: string; // Example assuming ID is a string
 }
 
 interface ThProps {
@@ -54,21 +55,21 @@ function Th({ children, reversed, sorted, onSort }: ThProps) {
     );
 }
 
-function filterData(data: Student[], search: string) {
+function filterData(data: Executive[], search: string) {
     const query = search.toLowerCase().trim();
     if (query === '') {
         return data;
     }
     return data.filter((item) =>
-        ['firstName', 'lastName', 'email', 'pronouns', 'upi', 'major', 'semesterPlan'].some((key) =>
+        ['execName', 'execRole', 'execLinkedInLink', 'execFavObject'].some((key) =>
             item[key].toLowerCase().includes(query)
         )
     );
 }
 
 function sortData(
-    data: Student[],
-    payload: { sortBy: keyof Student | null; reversed: boolean; search: string }
+    data: Executive[],
+    payload: { sortBy: keyof Executive | null; reversed: boolean; search: string }
 ) {
     const { sortBy } = payload;
 
@@ -86,45 +87,45 @@ function sortData(
     });
 }
 
-function MembersTable() {
+function ExecTable() {
     const [search, setSearch] = useState('');
-    const [students, setStudents] = useState<Student[]>([]);
-    const [sortedData, setSortedData] = useState<Student[]>([]);
-    const [sortBy, setSortBy] = useState<keyof Student | null>(null);
+    const [executives, setExecutives] = useState<Executive[]>([]);
+    const [sortedData, setSortedData] = useState<Executive[]>([]);
+    const [sortBy, setSortBy] = useState<keyof Executive | null>(null);
     const [reverseSortDirection, setReverseSortDirection] = useState(false);
 
     useEffect(() => {
-        const fetchStudents = async () => {
+        const fetchExecutives = async () => {
             try {
-                const response = await fetch('/api/Member');
-                const data: Student[] = await response.json();
-                setStudents(data);
+                const response = await fetch('/api/Executive');
+                const data: Executive[] = await response.json();
+                setExecutives(data);
                 setSortedData(data);
             } catch (error) {
-                console.error('Error fetching students:', error);
+                console.error('Error fetching executives:', error);
             }
         };
 
-        fetchStudents();
+        fetchExecutives();
     }, []);
 
-    const setSorting = (field: keyof Student) => {
+    const setSorting = (field: keyof Executive) => {
         const reversed = field === sortBy ? !reverseSortDirection : false;
         setReverseSortDirection(reversed);
         setSortBy(field);
-        setSortedData(sortData(students, { sortBy: field, reversed, search }));
+        setSortedData(sortData(executives, { sortBy: field, reversed, search }));
     };
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.currentTarget;
         setSearch(value);
-        setSortedData(sortData(students, { sortBy, reversed: reverseSortDirection, search: value }));
+        setSortedData(sortData(executives, { sortBy, reversed: reverseSortDirection, search: value }));
     };
 
-    const deleteStudent = async (id: string) => {
+    const deleteExecutive = async (id: number) => {
         console.log(id);
         try {
-            const response = await fetch(`/api/Member/${id}`, {
+            const response = await fetch(`/api/Executive/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -135,50 +136,36 @@ function MembersTable() {
                 throw new Error('Network response was not ok');
             }
 
-            // Update students state to reflect deletion
-            const updatedStudents = students.filter((student) => student.studentID !== id);
-            setStudents(updatedStudents);
-            setSortedData(sortData(updatedStudents, { sortBy, reversed: reverseSortDirection, search }));
+            // Update executives state to reflect deletion
+            const updatedExecutives = executives.filter((exec) => exec.execId !== id);
+            setExecutives(updatedExecutives);
+            setSortedData(sortData(updatedExecutives, { sortBy, reversed: reverseSortDirection, search }));
 
-            console.log('Student deleted successfully');
+            console.log('Executive deleted successfully');
         } catch (error) {
             console.error('There was a problem with the delete operation:', error);
         }
     };
 
     const rows = sortedData.map((item) => (
-        <Table.Tr key={item.studentID}>
+        <Table.Tr key={item.execName}>
             <Table.Td>
                 <Group gap="sm">
                     <Text fz="sm" fw={500}>
-                        {item.firstName} {item.lastName}
+                        {item.execName}
                     </Text>
                 </Group>
             </Table.Td>
             <Table.Td>
-                <Text fz="sm">{item.email}</Text>
-            </Table.Td>
-            <Table.Td>
-                <Text fz="sm">{item.pronouns}</Text>
-            </Table.Td>
-            <Table.Td>
-                <Text fz="sm">{item.upi}</Text>
-            </Table.Td>
-            <Table.Td>
-                <Text fz="sm">{item.major}</Text>
-            </Table.Td>
-            <Table.Td>
-                <Text fz="sm">{item.semesterPlan}</Text>
-            </Table.Td>
-            <Table.Td>
-                <Badge color={item.payOffline ? 'yellow' : 'green'} variant="light">
-                    {item.payOffline ? 'Offline' : 'Online'}
+                <Badge color={jobColors[item.execRole.toLowerCase()]} variant="light">
+                    {item.execRole}
                 </Badge>
             </Table.Td>
             <Table.Td>
-                <Badge color={item.paid ? 'green' : 'red'} variant="light">
-                    {item.paid ? 'Paid' : 'Unpaid'}
-                </Badge>
+                <Text fz="sm">{item.execLinkedInLink}</Text>
+            </Table.Td>
+            <Table.Td>
+                <Text fz="sm">{item.execFavObject}</Text>
             </Table.Td>
             <Table.Td>
                 <Group gap={0} justify="flex-end">
@@ -188,7 +175,7 @@ function MembersTable() {
                     <ActionIcon
                         variant="subtle"
                         color="red"
-                        onClick={() => deleteStudent(item.studentID)} // Pass the ID to delete function
+                        onClick={() => deleteExecutive(item.execId)} // Pass the ID to delete function
                     >
                         <IconTrash style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
                     </ActionIcon>
@@ -210,60 +197,32 @@ function MembersTable() {
                 <Table.Tbody>
                     <Table.Tr>
                         <Th
-                            sorted={sortBy === 'firstName'}
+                            sorted={sortBy === 'execName'}
                             reversed={reverseSortDirection}
-                            onSort={() => setSorting('firstName')}
+                            onSort={() => setSorting('execName')}
                         >
-                            Name
+                            Executive
                         </Th>
                         <Th
-                            sorted={sortBy === 'email'}
+                            sorted={sortBy === 'execRole'}
                             reversed={reverseSortDirection}
-                            onSort={() => setSorting('email')}
+                            onSort={() => setSorting('execRole')}
                         >
-                            Email
+                            Role
                         </Th>
                         <Th
-                            sorted={sortBy === 'pronouns'}
+                            sorted={sortBy === 'execLinkedInLink'}
                             reversed={reverseSortDirection}
-                            onSort={() => setSorting('pronouns')}
+                            onSort={() => setSorting('execLinkedInLink')}
                         >
-                            Pronouns
+                            LinkedIn
                         </Th>
                         <Th
-                            sorted={sortBy === 'upi'}
+                            sorted={sortBy === 'execFavObject'}
                             reversed={reverseSortDirection}
-                            onSort={() => setSorting('upi')}
+                            onSort={() => setSorting('execFavObject')}
                         >
-                            UPI
-                        </Th>
-                        <Th
-                            sorted={sortBy === 'major'}
-                            reversed={reverseSortDirection}
-                            onSort={() => setSorting('major')}
-                        >
-                            Major
-                        </Th>
-                        <Th
-                            sorted={sortBy === 'semesterPlan'}
-                            reversed={reverseSortDirection}
-                            onSort={() => setSorting('semesterPlan')}
-                        >
-                            Semester Plan
-                        </Th>
-                        <Th
-                            sorted={sortBy === 'payOffline'}
-                            reversed={reverseSortDirection}
-                            onSort={() => setSorting('payOffline')}
-                        >
-                            Payment Method
-                        </Th>
-                        <Th
-                            sorted={sortBy === 'paid'}
-                            reversed={reverseSortDirection}
-                            onSort={() => setSorting('paid')}
-                        >
-                            Payment Status
+                            Favourite Celestial Object
                         </Th>
                     </Table.Tr>
                 </Table.Tbody>
@@ -272,7 +231,7 @@ function MembersTable() {
                         rows
                     ) : (
                         <Table.Tr>
-                            <Table.Td colSpan={9}>
+                            <Table.Td colSpan={4}>
                                 <Text fw={500} ta="center">
                                     Nothing found
                                 </Text>
@@ -285,4 +244,4 @@ function MembersTable() {
     );
 }
 
-export default MembersTable;
+export default ExecTable;
