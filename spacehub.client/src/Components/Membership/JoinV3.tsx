@@ -130,16 +130,16 @@ function JoinV3() {
     };
 
     return (
-        <Center>
-            <Container size="xl" my={40} >
-                <Paper shadow="md" radius="lg">
+        <div className={classes.joinContainer}>
+        <Center inline>
+                <Paper shadow="md" radius="lg" >
                     <div className={classes.wrapper}>
-                        <div className={classes.contacts} style={{ backgroundImage: `url(${triangle})` }}>
-                            <Text fz="lg" mb="md" fw={700} className={classes.title} c="#fff">
-                                Contact information
-                            </Text>
-                            <ContactIconsList />
-                        </div>
+                        {/*<div className={classes.contacts} style={{ backgroundImage: `url(${triangle})` }}>*/}
+                        {/*    <Text fz="lg" mb="md" fw={700} className={classes.title} c="#fff">*/}
+                        {/*        Contact information*/}
+                        {/*    </Text>*/}
+                        {/*    <ContactIconsList />*/}
+                        {/*</div>*/}
                         <form className={classes.form} onSubmit={handleSubmit}>
                             <Stepper
                                 iconSize={32}
@@ -288,8 +288,8 @@ function JoinV3() {
                         </form>
                     </div>
                 </Paper>
-            </Container>
         </Center>
+        </div>
     );
 }
 
