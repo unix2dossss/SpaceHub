@@ -6,7 +6,7 @@ import {
 } from '@mantine/core';
 import classes from './ExecInterface.module.css';
 import { useForm } from '@mantine/form';
-import MembersTable from '../ManageMembers/MembersTable';
+import ExecTable from './ExecTable';
 
 function ExecInterface() {
     const [refreshKey, setRefreshKey] = useState(0); // State variable to track changes
@@ -130,7 +130,7 @@ function ExecInterface() {
                 </form>
             </div>
             <div className={classes.table}>
-                <MembersTable key={refreshKey} />
+                <ExecTable key={refreshKey} />
             </div>
         </Flex>
     );

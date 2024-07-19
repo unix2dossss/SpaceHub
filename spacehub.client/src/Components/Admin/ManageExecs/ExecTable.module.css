@@ -1,0 +1,34 @@
+/* src/UsersTable.module.css */
+.tableTr {
+    /* General styles for table rows */
+}
+
+@media (max-width: 768px) {
+    .tableExecutive,
+    .tableRole,
+    .tableLinkedIn,
+    .tableFavObject {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .tableTr {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .tableTh,
+    .tableTd {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 0;
+    }
+
+    .tableTh {
+        font-weight: bold;
+    }
+}
