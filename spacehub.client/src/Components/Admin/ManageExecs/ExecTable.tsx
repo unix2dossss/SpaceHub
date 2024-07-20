@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Table,
     ScrollArea,
@@ -12,7 +12,8 @@ import {
     ActionIcon,
 } from '@mantine/core';
 import { IconSelector, IconChevronDown, IconChevronUp, IconSearch, IconPencil, IconTrash } from '@tabler/icons-react';
-import classes from './ExecTable.module.css'; // Ensure you have the CSS file
+import classes from './ExecTable.module.css';
+import { Executive } from './types'; // Adjust the path as necessary
 
 const jobColors = {
     engineer: 'blue',
@@ -20,21 +21,15 @@ const jobColors = {
     designer: 'pink',
 };
 
-interface Executive {
-    execId: number;
-    execName: string;
-    execRole: string;
-    execLinkedInLink: string;
-    execFavObject: string;
-    // Add an ID field if available from your API
-    id: string; // Example assuming ID is a string
-}
-
 interface ThProps {
     children: React.ReactNode;
     reversed: boolean;
     sorted: boolean;
     onSort(): void;
+}
+
+interface ExecTableProps {
+    onEdit: (exec: Executive) => void;
 }
 
 function Th({ children, reversed, sorted, onSort }: ThProps) {
@@ -62,10 +57,11 @@ function filterData(data: Executive[], search: string) {
     }
     return data.filter((item) =>
         ['execName', 'execRole', 'execLinkedInLink', 'execFavObject'].some((key) =>
-            item[key].toLowerCase().includes(query)
+            (item[key as keyof Executive] as string).toLowerCase().includes(query)
         )
     );
 }
+
 
 function sortData(
     data: Executive[],
@@ -87,7 +83,7 @@ function sortData(
     });
 }
 
-function ExecTable() {
+function ExecTable({ onEdit }: ExecTableProps) {
     const [search, setSearch] = useState('');
     const [executives, setExecutives] = useState<Executive[]>([]);
     const [sortedData, setSortedData] = useState<Executive[]>([]);
@@ -123,61 +119,44 @@ function ExecTable() {
     };
 
     const deleteExecutive = async (id: number) => {
-        console.log(id);
         try {
             const response = await fetch(`/api/Executive/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
             });
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
 
-            // Update executives state to reflect deletion
             const updatedExecutives = executives.filter((exec) => exec.execId !== id);
             setExecutives(updatedExecutives);
             setSortedData(sortData(updatedExecutives, { sortBy, reversed: reverseSortDirection, search }));
-
-            console.log('Executive deleted successfully');
         } catch (error) {
             console.error('There was a problem with the delete operation:', error);
         }
     };
 
-    const rows = sortedData.map((item) => (
-        <Table.Tr key={item.execName}>
+    const rows = sortedData.map((row) => (
+        <Table.Tr key={row.execId}>
+            <Table.Td>{row.execName}</Table.Td>
             <Table.Td>
-                <Group gap="sm">
-                    <Text fz="sm" fw={500}>
-                        {item.execName}
-                    </Text>
-                </Group>
-            </Table.Td>
-            <Table.Td>
-                <Badge color={jobColors[item.execRole.toLowerCase()]} variant="light">
-                    {item.execRole}
+                <Badge color={jobColors[row.execRole.toLowerCase() as keyof typeof jobColors] || 'gray'}>
+                    {row.execRole}
                 </Badge>
             </Table.Td>
             <Table.Td>
-                <Text fz="sm">{item.execLinkedInLink}</Text>
+                <a href={row.execLinkedInLink} target="_blank" rel="noopener noreferrer">
+                    {row.execLinkedInLink}
+                </a>
             </Table.Td>
+            <Table.Td>{row.execFavObject}</Table.Td>
             <Table.Td>
-                <Text fz="sm">{item.execFavObject}</Text>
-            </Table.Td>
-            <Table.Td>
-                <Group gap={0} justify="flex-end">
-                    <ActionIcon variant="subtle" color="gray">
-                        <IconPencil style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+                <Group spacing={0} position="right">
+                    <ActionIcon onClick={() => onEdit(row)}>
+                        <IconPencil size="1rem" stroke={1.5} />
                     </ActionIcon>
-                    <ActionIcon
-                        variant="subtle"
-                        color="red"
-                        onClick={() => deleteExecutive(item.execId)} // Pass the ID to delete function
-                    >
-                        <IconTrash style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+                    <ActionIcon color="red" onClick={() => deleteExecutive(row.execId)}>
+                        <IconTrash size="1rem" stroke={1.5} />
                     </ActionIcon>
                 </Group>
             </Table.Td>
@@ -189,51 +168,34 @@ function ExecTable() {
             <TextInput
                 placeholder="Search by any field"
                 mb="md"
-                leftSection={<IconSearch style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}
+                icon={<IconSearch size="0.9rem" stroke={1.5} />}
                 value={search}
                 onChange={handleSearchChange}
             />
-            <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} layout="fixed" style={{ width: 'auto' }}>
-                <Table.Tbody>
+            <Table horizontalSpacing="md" verticalSpacing="xs" sx={{ tableLayout: 'fixed' }}>
+                <Table.Thead>
                     <Table.Tr>
-                        <Th
-                            sorted={sortBy === 'execName'}
-                            reversed={reverseSortDirection}
-                            onSort={() => setSorting('execName')}
-                        >
-                            Executive
+                        <Th sorted={sortBy === 'execName'} reversed={reverseSortDirection} onSort={() => setSorting('execName')}>
+                            Name
                         </Th>
-                        <Th
-                            sorted={sortBy === 'execRole'}
-                            reversed={reverseSortDirection}
-                            onSort={() => setSorting('execRole')}
-                        >
+                        <Th sorted={sortBy === 'execRole'} reversed={reverseSortDirection} onSort={() => setSorting('execRole')}>
                             Role
                         </Th>
-                        <Th
-                            sorted={sortBy === 'execLinkedInLink'}
-                            reversed={reverseSortDirection}
-                            onSort={() => setSorting('execLinkedInLink')}
-                        >
+                        <Th sorted={sortBy === 'execLinkedInLink'} reversed={reverseSortDirection} onSort={() => setSorting('execLinkedInLink')}>
                             LinkedIn
                         </Th>
-                        <Th
-                            sorted={sortBy === 'execFavObject'}
-                            reversed={reverseSortDirection}
-                            onSort={() => setSorting('execFavObject')}
-                        >
+                        <Th sorted={sortBy === 'execFavObject'} reversed={reverseSortDirection} onSort={() => setSorting('execFavObject')}>
                             Favourite Celestial Object
                         </Th>
+                        <Table.Th>Actions</Table.Th>
                     </Table.Tr>
-                </Table.Tbody>
+                </Table.Thead>
                 <Table.Tbody>
-                    {rows.length > 0 ? (
-                        rows
-                    ) : (
+                    {rows.length > 0 ? rows : (
                         <Table.Tr>
-                            <Table.Td colSpan={4}>
-                                <Text fw={500} ta="center">
-                                    Nothing found
+                            <Table.Td colSpan={5}>
+                                <Text weight={500} align="center">
+                                    No executives found
                                 </Text>
                             </Table.Td>
                         </Table.Tr>
