@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
     TextInput,
     Button,
@@ -7,9 +7,11 @@ import {
 import classes from './ExecInterface.module.css';
 import { useForm } from '@mantine/form';
 import ExecTable from './ExecTable';
+import { Executive } from './types';
 
 function ExecInterface() {
     const [refreshKey, setRefreshKey] = useState(0); // State variable to track changes
+    const [editingExec, setEditingExec] = useState<Executive | null>(null);
 
     const form = useForm({
         initialValues: {
@@ -43,14 +45,12 @@ function ExecInterface() {
     const handleSubmit = async (event) => {
         const { execName, execRole, execLinkedInLink, execFavObject } = form.values;
 
-        console.log(`Executive Name: ${execName}`);
-        console.log(`Executive Role: ${execRole}`);
-        console.log(`LinkedIn Link: ${execLinkedInLink}`);
-        console.log(`Favorite Object: ${execFavObject}`);
-
         try {
-            const response = await fetch('/api/Executive', {
-                method: 'POST',
+            const method = editingExec ? 'PUT' : 'POST';
+            const url = editingExec ? `/api/Executive/${editingExec.execId}` : '/api/Executive';
+
+            const response = await fetch(url, {
+                method,
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -70,15 +70,26 @@ function ExecInterface() {
             }
 
             console.log('Form submitted successfully:', responseBody);
-            setRefreshKey((oldKey) => oldKey + 1); // Trigger a rerender of MembersTable
+            setRefreshKey((oldKey) => oldKey + 1); // Trigger a rerender of ExecTable
+            form.reset();
+            setEditingExec(null);
 
-            // You can also reset the form or show a success message here
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
             if (error.response) {
                 console.error('Error response:', error.response);
             }
         }
+    };
+
+    const handleEdit = (exec: Executive) => {
+        setEditingExec(exec);
+        form.setValues({
+            execName: exec.execName,
+            execRole: exec.execRole,
+            execLinkedInLink: exec.execLinkedInLink,
+            execFavObject: exec.execFavObject,
+        });
     };
 
     return (
@@ -125,12 +136,12 @@ function ExecInterface() {
                         type="submit"
                         className={classes.control}
                     >
-                        Add Executive
+                        {editingExec ? 'Update Executive' : 'Add Executive'}
                     </Button>
                 </form>
             </div>
             <div className={classes.table}>
-                <ExecTable key={refreshKey} />
+                <ExecTable key={refreshKey} onEdit={handleEdit} />
             </div>
         </Flex>
     );
