@@ -1,4 +1,9 @@
 ﻿# 🚀 SpaceHub Website 🌌
+
+![Spacehub Demo](/Marketing/mocks/gif.gif)
+
+
+
 Welcome to the SpaceHub website repository! This React project is aimed at creating a dynamic and informative website for SpaceHub, a University Club dedicated to all things space-related.
 
 The SpaceHub website serves as a central hub for information about our club, events, and resources. It provides a platform for both current and prospective members to learn about upcoming activities, access resources, and connect with the SpaceHub community. Our goal is to create an engaging and user-friendly website that reflects the dynamic nature of our club and encourages participation from students interested in space exploration.
