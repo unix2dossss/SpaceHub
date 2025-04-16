@@ -23,11 +23,10 @@ function Hero2() {
                 <div className={classes.inner}>
                     <div className={classes.content}>
                         <Title className={classes.title}>
-                            A <span className={classes.highlight}>modern</span> React <br /> components library
+                            An <span className={classes.highlight}>Inspiring</span> Club <br /> for Space Enthusiasts
                         </Title>
                         <Text c="dimmed" mt="md">
-                            Build fully functional accessible web applications faster than ever - Mantine includes
-                            more than 120 customizable components and hooks to cover you in any situation
+                            Join Spacehub to connect with students passionate about space and exploration. Whether you're new or experienced, our club offers events, resources, and activities to fuel your cosmic curiosity.
                         </Text>
 
                         <List
@@ -41,25 +40,22 @@ function Hero2() {
                             }
                         >
                             <List.Item>
-                                <b>TypeScript based</b> - build type safe applications, all components and hooks
-                                export types
+                                <b>Explore Space Together</b> - Enjoy stargazing and talks on the latest space discoveries for all levels.
                             </List.Item>
                             <List.Item>
-                                <b>Free and open source</b> - all packages have MIT license, you can use Mantine in
-                                any project
+                                <b>Hands-On Learning</b> - Join workshops, projects, and guided sessions in astronomy.
                             </List.Item>
                             <List.Item>
-                                <b>No annoying focus ring</b> - focus ring will appear only when user navigates with
-                                keyboard
+                                <b>Community Focused</b> - Connect, learn, and inspire each other to reach for the stars.
                             </List.Item>
                         </List>
 
                         <Group mt={30}>
                             <Button radius="xl" size="md" className={classes.control}>
-                                Get started
+                                Get Involved
                             </Button>
                             <Button variant="default" radius="xl" size="md" className={classes.control}>
-                                Source code
+                                Discover Events
                             </Button>
                         </Group>
                     </div>
